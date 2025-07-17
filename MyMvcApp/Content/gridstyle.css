@@ -1,0 +1,272 @@
+﻿body {
+    font-family: "Open Sans", "Segoe UI" !important;
+    background: #f4f6f9;
+    overflow-x: hidden;
+}
+
+
+
+
+#ticketGrid {
+    font-family: "Open Sans", "Segoe UI", sans-serif !important;
+    font-size: 12px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+    #ticketGrid .dx-datagrid-table {
+        border-spacing: 3px 3px !important; /* 10px gap between columns, 8px between rows */
+        border-collapse: separate !important;
+    }
+    /*  Remove All Default Borders */
+    #ticketGrid .dx-datagrid,
+    #ticketGrid .dx-datagrid-headers,
+    #ticketGrid .dx-datagrid-rowsview,
+    #ticketGrid .dx-datagrid-borders {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+        /*  1. Table Header Styling (Keep Background White) */
+        #ticketGrid .dx-datagrid-headers .dx-header-row > td,
+        #ticketGrid .dx-datagrid-headers .dx-header-row > th {
+            font-weight: bold !important;
+            font-size: 12px !important;
+            background-color: #ffffff !important; /* Keep header white */
+            color: black !important;
+            border: none !important;
+            padding: 2px 5px !important;
+        }
+
+   
+
+
+    /*  2. Remove cell borders */
+    #ticketGrid .dx-row > td,
+    #ticketGrid .dx-header-row > td {
+        border: none !important;
+        text-align: left ; /* Align text to the left */
+        vertical-align: middle !important; /* Optional: center vertically */
+    }
+
+        #ticketGrid .dx-row > td:not(:first-child),
+        #ticketGrid .dx-header-row > td:not(:first-child) {
+            text-align: left !important; /* Align text to the left */
+           
+        }
+
+    /* === 3. Row Height === */
+    #ticketGrid .dx-row {
+        height: 21px !important;
+    }
+
+    /* === Light gray background for all data rows === */
+    #ticketGrid .dx-data-row {
+        background-color: transparent !important; /* Don't use row bg; we use cell bg */
+    }
+
+        /* === Default cell styles for all cells === */
+        #ticketGrid .dx-data-row > td {
+            padding: 6px 10px !important;
+            background-color: #f0f0f0 !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+            border-radius: 0 !important;
+        }
+
+            /* ❌ REMOVE styling from first column only */
+            #ticketGrid .dx-data-row > td:first-child {
+                background-color: transparent !important;
+                box-shadow: none !important;
+               
+                
+              
+            }
+
+          
+
+
+    #ticketGrid .dx-row.dx-selection,
+    #ticketGrid .dx-row.dx-selection.dx-row-focused {
+        background-color: #cdeaff !important;
+    }
+
+        #ticketGrid .dx-row.dx-selection > td,
+        #ticketGrid .dx-row.dx-selection.dx-row-focused > td {
+            background-color: #cdeaff !important;
+        }
+
+
+    /* === 7. Checkbox Hiding & Styling === */
+    #ticketGrid .dx-checkbox-icon {
+        display: none !important;
+    }
+
+    #ticketGrid .dx-select-checkbox {
+        width: 15px;
+        height: 15px;
+        border-radius: 50% !important;
+        border: 1px solid #d9d8d7 !important;
+        background-color: white !important;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      
+        justify-content: flex-start !important;
+        margin: 0 !important;
+       
+    }
+
+        #ticketGrid .dx-select-checkbox.dx-checkbox-checked {
+            background-color: #007bff !important;
+            border: 3px solid #007bff !important;
+        }
+
+
+    /* 🔘 1. Always gray left border on 2nd column */
+    #ticketGrid .dx-datagrid-rowsview .dx-data-row td:nth-child(2) {
+        position: relative;
+    }
+    
+
+        #ticketGrid .dx-datagrid-rowsview .dx-data-row td:nth-child(2)::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #ccc; /* Light gray */
+        }
+
+    /* ✅ 2. On selection, change to green */
+    #ticketGrid .dx-datagrid-rowsview .dx-data-row.dx-selection td:nth-child(2)::before {
+        background-color: #88db2f !important; /* Green */
+    }
+
+
+    #ticketGrid .dx-select-checkbox.dx-checkbox-checked::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 4px;
+        width: 3px;
+        height: 6px;
+        border: solid white;
+        border-width: 0 1.5px 1.5px 0;
+        transform: rotate(45deg);
+    }
+
+    /* === 8. Cell Padding === */
+    #ticketGrid .dx-header-row td,
+    #ticketGrid .dx-row > td {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* === 9. Hide Search Panel === */
+    #ticketGrid .dx-datagrid-search-panel {
+        display: none !important;
+    }
+
+/* === 10. Enable Horizontal Scroll === */
+.dx-datagrid-rowsview {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+}
+
+
+
+/* Reduce overall pager height and padding */
+#ticketGrid .dx-pager {
+    padding: 4px 8px !important; /* Reduce vertical and horizontal padding */
+    font-size: 11px !important; /* Smaller font size */
+    height: 32px !important; /* Reduce height */
+}
+
+/* Reduce margin between pager and bottom of grid */
+#ticketGrid .dx-datagrid-pager {
+    margin-top: 4px !important;
+    padding-bottom: 0px !important;
+}
+
+/* Make page buttons smaller */
+#ticketGrid .dx-page,
+#ticketGrid .dx-page-size,
+#ticketGrid .dx-info {
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+}
+
+/* Reduce navigation buttons size */
+#ticketGrid .dx-prev-button,
+#ticketGrid .dx-next-button {
+    padding: 2px 6px !important;
+    font-size: 12px !important;
+}
+
+
+
+/* Style the horizontal and vertical scrollbars inside the grid */
+#ticketGrid .dx-scrollable-scrollbar {
+    background-color: #e6e6e6 !important; /* Background of the scrollbar area */
+    border:none;
+}
+
+
+.custom-desc-popup {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+}
+
+/* Popup Box */
+.custom-description-popup {
+    position: absolute;
+    z-index: 9999;
+    background: #fff;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    min-height: 100px;
+    font-size: 13px;
+    font-family: 'Open Sans', 'Segoe UI';
+    line-height: 1.5;
+    color: #000;
+}
+
+/* Arrow on the right middle */
+.popup-arrow-right {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #fff;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+}
+.popup-arrow-left {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #ffffff; /* Match popup background */
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+}
+.open-description-popup:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.open-description-popup {
+    border: none !important;
+    background: transparent !important;
+}

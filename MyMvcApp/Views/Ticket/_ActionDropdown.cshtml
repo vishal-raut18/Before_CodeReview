@@ -1,0 +1,107 @@
+﻿@* Action Dropdown Partial View *@
+<div class="dropdown">
+    <button class="btn btn-sm  text-white dropdown-toggle d-flex align-items-center px-3"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false"
+            style="height: 23px;  border-radius: 6px; font-family: ' Open Sans', 'Segoe UI'; font-size: 10px; background-color: #0091ff; font-weight: 600;">
+        <i class="bi bi-list me-2"></i> ACTIONS
+    </button>
+
+    <div class="dropdown-menu p-2 shadow border-0" style="min-width: 300px; font-size: 13px; border-radius: 8px; font-family: ' Open Sans', 'Segoe UI'; width:200px;background-color:white;">
+        <!-- TICKET ACTIONS -->
+        <div class="mb-1 px-2 text-muted small" style="font-family: ' Open Sans', 'Segoe UI';">TICKET ACTIONS</div>
+        <a class="dropdown-item d-flex align-items-center change-status-open" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+            <i class="bi bi-box-arrow-in-right me-2"></i> Open
+        </a>
+
+        <a class="dropdown-item d-flex align-items-center change-status-inprogress" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+            <i class="fa-solid fa-bars-progress me-2"></i> In Progress
+        </a>
+        
+        <a class="dropdown-item d-flex align-items-center change-status-closed" href="#"
+           data-bs-toggle="modal" data-bs-target="#closeTicketModal" style="font-family: ' Open Sans', 'Segoe UI';">
+            <i class="bi bi-x-circle me-2"></i> Closed
+        </a>
+
+
+        <a class="dropdown-item d-flex align-items-center edit-ticket-action" href="#">
+            <i class="bi bi-pencil-square me-2"></i> Edit Ticket
+        </a>
+
+
+
+
+
+            <i class="bi bi-trash me-2"></i> Delete Ticket
+        </a>
+
+
+
+        <hr class="my-1" />
+
+        <!-- ASSIGN -->
+        <div class="mb-1 px-2 text-muted small" style="font-family: ' Open Sans', 'Segoe UI';">ASSIGN</div>
+        <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';"><i class="bi bi-person-plus me-2"></i> Assign Ticket</a>
+        <a class="dropdown-item d-flex align-items-center" href="#" style=" font-family: ' Open Sans', 'Segoe UI';"><i class="bi bi-person-badge me-2"></i> Assign Owner</a>
+
+        <hr class="my-1" />
+
+        <!-- TICKET DETAILS -->
+        <div class="mb-1 px-2 text-muted small">TICKET DETAILS</div>
+        <a class="dropdown-item d-flex align-items-center view-ticket-action" href="#" style="font-family: 'Open Sans', 'Segoe UI';">
+            <i class="bi bi-eye me-2"></i> View Ticket
+        </a>
+
+        <a class="dropdown-item d-flex align-items-center view-history-action" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+            <i class="bi bi-clock-history me-2"></i> View History
+        </a>
+
+
+        <!-- REMOTE NESTED DROPDOWN -->
+        <div class="dropend" >
+            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#" data-bs-toggle="dropdown" style="font-family: ' Open Sans', 'Segoe UI'; ">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-laptop me-2"></i> Remote
+                </div>
+                <i class="bi bi-chevron-right ms-2 small"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-submenu shadow-sm border-0" style="font-size: 13px; border-radius: 8px; min-width: 200px;">
+
+                <div class="px-3 py-2 text-muted small">Remote Options</div>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+                        <i class="bi bi-laptop me-2"></i> Remote Pro
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+                        <i class="bi bi-display me-2"></i> View Screen
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+                        <i class="bi bi-box-arrow-in-right me-2"></i> RDP
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+                        <i class="bi bi-diagram-3 me-2"></i> VNC
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
+                        <i class="bi bi-sliders me-2"></i> VNC Setup
+                    </a>
+                </li>
+                <li class="dropdown-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-box-arrow-left me-2"></i>
+                        <span>Log Off User</span>
+                    </div>
+                    <input type="checkbox" class="form-check-input" />
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

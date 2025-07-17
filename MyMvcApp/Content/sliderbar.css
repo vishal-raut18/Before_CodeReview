@@ -1,0 +1,202 @@
+﻿
+body {
+    font-family: "Open Sans", "Segoe UI", sans-serif !important;
+    font-size: 13px !important;
+    background-color: white !important;
+    margin: 0;
+}
+
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #2e2e30;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    font-size: 13px;
+    transition: width 0.3s ease;
+    z-index: 1000;
+}
+
+    .sidebar.collapsed {
+        width: 70px;
+    }
+
+    /* === Logo/Header === */
+    .sidebar .top-logo {
+        padding: 16px;
+       
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom:18px;
+    }
+
+        .sidebar .top-logo img {
+            width: 130px;
+            transition: all 0.3s ease;
+        }
+
+    .sidebar.collapsed .top-logo img {
+        width: 40px;
+        transform: scale(0.9);
+        margin-left: -5px;
+        opacity: 0.8;
+    }
+
+    .sidebar .btn-toggle {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+
+    /* === Navigation Items === */
+    .sidebar a {
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 18px;
+        display: flex;
+        align-items: center;
+       
+        font-size: 13px;
+        transition: background 0.3s, padding 0.3s, margin 0.3s, border 0.3s;
+        border-left: 4px solid transparent; 
+    }
+
+        .sidebar a i {
+            width: 18px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .sidebar a .text {
+            margin-left: 10px;
+        }
+
+    .sidebar.collapsed a {
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .sidebar.collapsed .text {
+        display: none;
+    }
+
+    /* === Active/Hover === */
+    .sidebar a:hover,
+    .sidebar a.active {
+        background-color: #495057;
+        color: #fff;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        margin-right: 8px;
+        border-left: 4px solid #0091ff;
+    }
+
+    /* === Divider === */
+    .sidebar hr {
+        border-top: 2px solid White;
+        margin: 0.5rem 0;
+    }
+
+   
+/* === Main Content === */
+.main-content {
+    margin-left: 175px;
+    transition: margin-left 0.3s;
+    padding: 20px 30px;
+
+    
+}
+
+    .main-content.collapsed {
+        margin-left: 70px;
+    }
+
+/* === Topbar === */
+.topbar {
+    background: #fff;
+    height: 60px;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+.top-icons i {
+    margin-left: 20px;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 16px;
+}
+
+/* === Footer === */
+footer {
+    text-align: center;
+   
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.sidebar .btn-toggle i {
+    font-weight: normal !important; 
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    font-style: normal !important;
+    font-size: 18px !important; 
+    color: #ffffff !important; 
+}
+
+
+/* === Footer Divider Line === */
+footer .footer-divider {
+    border-top: 1px solid #ffffff !important;
+   
+}
+
+/* === Footer Link Overrides === */
+footer .bottom-user {
+    display: flex;
+    align-items: center;
+    color: #ffffff !important;
+    font-size: 13px;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-left: none !important;
+    background: none !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+    footer .bottom-user:hover {
+        color: #cccccc !important;
+        background: none !important;
+        text-decoration: underline !important;
+    }
+
+/* Prevent Sidebar Hover Styling on Footer */
+.sidebar footer a:hover,
+.sidebar footer a.active {
+    background: none !important;
+    border-left: none !important;
+    margin: 0 !important;
+}
+
+/* Responsive text dots if too long */
+footer .bottom-user span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 110px; 
+    vertical-align: middle;
+}
+

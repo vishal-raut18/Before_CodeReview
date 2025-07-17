@@ -1,0 +1,11 @@
+﻿#editTicketModal .form-control,
+#editTicketModal .form-select,
+#editTicketModal textarea {
+    width: 100% !important;
+    min-width: 100% !important;
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+}
+
+#editTicketModal .d-flex input {
+    flex: 1 1 auto;
+}

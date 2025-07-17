@@ -1,0 +1,66 @@
+﻿@* Views/Ticket/_EditTicket.cshtml *@
+<div class="modal fade" id="editTicketModal" tabindex="-1" aria-labelledby="editTicketLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+        <div class="modal-content border-0 rounded-4 shadow">
+            <div class="modal-header border-bottom-0 px-4 pt-4">
+                <h5 class="modal-title fw-bold">Edit Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <hr class="mt-0 mb-0 mx-4" />
+
+            <form id="editTicketForm">
+                <div class="modal-body px-4 pt-3" style="max-height: 500px; overflow-y: auto;">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Select Computer</label>
+                        <select class="form-select form-select-sm" id="editComputer">
+                            <option value="Computer-01">Computer-01</option>
+                            <option value="Computer-02">Computer-02</option>
+                            <option value="Computer-03">Computer-03</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Owner</label>
+                        <div class="d-flex">
+                            <input type="text" class="form-control form-control-sm me-2" id="editOwner" placeholder="Owner" />
+                            <button type="button" class="btn btn-sm btn-outline-primary custom-edit-btn">EDIT</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Assigned To</label>
+                        <div class="d-flex">
+                            <input type="text" class="form-control form-control-sm me-2" id="editAssignedTo" placeholder="Assigned To" />
+                            <button type="button" class="btn btn-sm btn-outline-primary custom-edit-btn">EDIT</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea class="form-control form-control-sm" id="editDescription" rows="3" maxlength="1000"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Notify User</label>
+                        <input type="email" class="form-control form-control-sm" id="editEmail" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Priority</label>
+                        <select id="editPriority" class="form-select form-select-sm">
+                            <option value="P1">P1</option>
+                            <option value="P2">P2</option>
+                            <option value="P3">P3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-top-0 px-4 pb-4 justify-content-end">
+                    <button type="button" class="btn btn-primary btn-sm px-4" id="updateTicketBtn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

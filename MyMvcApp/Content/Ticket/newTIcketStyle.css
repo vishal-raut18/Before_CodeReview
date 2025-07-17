@@ -1,0 +1,56 @@
+﻿
+.custom-add-btn {
+    min-width: 90px !important;
+    min-height: 10px !important;
+    transition: background-color 0.2s, color 0.2s;
+    color: white;
+    background-color: #0091ff;
+    border-radius: 5px;
+    border: none;
+    font-family: ' Open Sans', 'Segoe UI';
+    font-size: 13px;
+}
+
+.custom-add-btn:hover {
+    background-color: #0091ff;
+}
+
+#newTicketModal .form-control,
+#newTicketModal .form-select,
+#newTicketModal textarea {
+    width: 100% !important;
+    min-width: 100% !important;
+}
+
+#newTicketModal .d-flex input {
+    flex: 1 1 auto;
+}
+
+#saveTicketBtn {
+    min-width: 130px !important;
+    min-height: 8px !important;
+    transition: background-color 0.2s, color 0.2s;
+    color: white;
+    background-color: #0091ff;
+    border-radius: 5px;
+    border: none;
+    font-family: ' Open Sans', 'Segoe UI';
+    font-size: 13px;
+}
+
+.custom-upload-btn {
+    width: 100px;
+    font-size: 13px;
+    font-family: 'Open Sans', 'Segoe UI';
+    background-color: #0091ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+    .custom-upload-btn:hover {
+        background-color: #007be6;
+    }
+
+

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Welcome to Your Dashboard</h2>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Tickets</h5>
+                    <p class="card-text">Manage support tickets</p>
+                    <a href="@Url.Action("Index", "Ticket")" class="btn btn-light">Go to Tickets</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Applications</h5>
+                    <p class="card-text">View installed applications</p>
+                    <a href="#" class="btn btn-light disabled">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-white bg-warning shadow">
+                <div class="card-body">
+                    <h5 class="card-title">System Info</h5>
+                    <p class="card-text">Check system metrics</p>
+                    <a href="#" class="btn btn-light disabled">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

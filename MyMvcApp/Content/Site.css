@@ -1,0 +1,235 @@
+﻿
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 0 !important;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: "Open Sans", "Segoe UI" !important;
+}
+.container, .container-fluid {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+#wrapper {
+    min-height: 100vh;
+}
+
+#sidebar-wrapper {
+    width: 250px;
+    min-height: 100vh;
+}
+
+#page-content-wrapper {
+    flex: 1;
+}
+.mt-4,
+.my-4 {
+    margin-top: 0rem !important;
+}
+
+.custom-checkbox {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+    .custom-checkbox input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .custom-checkbox .checkmark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 16px;
+        width: 16px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        box-sizing: border-box;
+    }
+
+    .custom-checkbox input:checked ~ .checkmark {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .custom-checkbox .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    .custom-checkbox .checkmark:after {
+        left: 5px;
+        top: 1px;
+        width: 4px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+table-responsive::-webkit-scrollbar {
+    height: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #d1d3d4; /* scrollbar thumb color matching light gray */
+    border-radius: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background-color: #e8eaed; /* same as td background */
+}
+
+/* Remove scrollbar arrows */
+.table-responsive::-webkit-scrollbar-button {
+    display: none;
+}
+/* Base Dropdown Style */
+.dropdown-menu {
+    font-size: 13px;
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 240px;
+    z-index: 1050;
+}
+
+    /* Dropdown header */
+    .dropdown-menu .text-muted {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+
+/* Dropdown item icon spacing */
+.dropdown-item i {
+    font-size: 13px;
+    
+}
+
+/* Nested submenu for "Remote" */
+.dropend .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 0.25rem;
+    display: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    min-width: 200px;
+}
+
+.dropend:hover > .dropdown-menu {
+    display: block;
+}
+
+/* Divider inside submenu */
+.dropdown-submenu hr {
+    margin: 0.25rem 0;
+}
+
+/* Toggle (checkbox) inside submenu */
+.dropdown-submenu .form-check-input {
+    width: 16px;
+    height: 16px;
+}
+
+/* Button override to match Actions style */
+.btn.bg-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    height: 30px;
+}
+
+    .btn.bg-primary:hover,
+    .btn.bg-primary:focus {
+        background-color: #0069d9;
+        color: white;
+    }
+
+
+/* Optional: dark text on hover */
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+    color: #212529;
+}
+
+/* Arrow fix for submenu */
+.dropend > .dropdown-toggle::after {
+    display: none;
+}
+
+/* Restrict dropdown width */
+.dropdown-menu {
+    min-width: 180px !important;
+    max-width: 200px;
+    border-radius: 6px;
+    padding: 4px 0;
+}
+
+    /* Shrink font size and padding for each dropdown item */
+    .dropdown-menu .dropdown-item {
+        font-size: 13px;
+        padding: 6px 12px;
+        font-family: 'Open Sans';
+    }
+
+    /* Header inside dropdown */
+    .dropdown-menu .dropdown-header {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6c757d;
+        padding: 6px 12px 3px;
+    }
+
+    /* Nested dropdown (dropend submenu) */
+    .dropdown-menu .dropdown-menu {
+        left: 100%;
+        top: 0;
+        margin-left: 0.1rem;
+        min-width: 160px;
+    }
+.main-content{
+    margin-top:0px !important;
+}
+
+/* Hide default Bootstrap dropdown arrow */
+.ab::after {
+    display: none !important;
+}
+

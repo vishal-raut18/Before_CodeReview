@@ -1,0 +1,103 @@
+﻿@* This partial view is the Edit Ticket modal *@
+<div class="modal fade" id="editTicketModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 430px; ">
+        <div class="modal-content border-0 rounded-2 shadow">
+            <div class="modal-header border-bottom-0 px-4 py-3">
+                <h5 class="modal-title" style="font-family: 'Open Sans', 'Segoe UI'; font-size: 14px; font-weight:bold;">Edit Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <hr class="mt-0 mb-0 border-1" style="width: 100%; margin: 0; padding: 0;" />
+
+            <form id="editTicketForm">
+                
+                <div class="modal-body px-4 pt-3" style="max-height: 650px; overflow-y: auto; font-family: 'Open Sans', 'Segoe UI'; font-size: 14px;">
+
+                    <!-- 1. Select Computer -->
+                    <div class="mb-3 " style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Select Computer</label>
+                        <select class="form-select form-select-sm" name="Computer" id="editComputer">
+                            <option value="" disabled selected>Select Cccchgomputer</option>
+                            <option value="Computer-01">Computer-01</option>
+                            <option value="Computer-02">Computer-02</option>
+                            <option value="Computer-03">Computer-03</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. Status -->
+                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Status</label>
+                        <select class="form-select form-select-sm" name="Status" id="editStatus">
+                            <option value="Open">Open</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. Owner -->
+                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Owner</label>
+                        <div class="row g-2">
+                            <div class="col-9">
+                                <input type="text" class="form-control form-control-sm" id="editOwner" placeholder="Assign an Owner" style="background-color: #f0f0f0;" />
+                            </div>
+                            <div class="col-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                                <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
+                                        data-bs-toggle="modal" data-bs-target="#assignOwnerModal">
+                                    EDIT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Assigned To -->
+                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Assigned To</label>
+                        <div class="row g-2">
+                            <div class="col-9">
+                                <input type="text" class="form-control form-control-sm" id="editAssignedTo" placeholder="Assign To" style="background-color: #f0f0f0;" />
+                            </div>
+                            <div class="col-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                                <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
+                                        data-bs-toggle="modal" data-bs-target="#assignToModal">
+                                    EDIT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Description -->
+                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea class="form-control form-control-sm" id="editDescription" rows="3" maxlength="1000" placeholder="Enter description..."></textarea>
+                        <div class="text-end text-muted small mt-1">0/1000</div>
+                    </div>
+
+                    <!-- 6. Notify User -->
+                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Notify User</label>
+                        <input type="email" class="form-control form-control-sm" id="editEmail" placeholder="user@email.com" />
+                    </div>
+
+                    <!-- 7. Priority -->
+                    <div class="mb-4" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                        <label class="form-label fw-semibold">Priority</label>
+                        <select id="editPriority" class="form-select form-select-sm">
+                            <option value="" disabled selected>Select Priority</option>
+                            <option value="P1">P1</option>
+                            <option value="P2">P2</option>
+                            <option value="P3">P3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer border-top-0 px-4 pb-2 justify-content-end">
+                    <button type="button" class="btn btn-primary btn-sm px-4" id="updateTicketBtn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

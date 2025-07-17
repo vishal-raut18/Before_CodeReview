@@ -1,0 +1,74 @@
+﻿ <!--  Toast Container: Only one needed -->
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1080;">
+
+    <!--Toast: Open -->
+    <div id="toastOpen" class="toast text-white border-0 shadow rounded-3 mb-2"
+         style="background-color: #0091ff; font-family: 'Open Sans', 'Segoe UI'; font-size: 13px;" role="alert" data-bs-delay="2500">
+        <div class="d-flex align-items-center px-3 py-2">
+            <div class=d-flex align-items-center justify-content-center me-2"
+                 style="width: 24px; height: 24px;">
+                <i class="bi bi-check-circle-fill me-2 " style="font-size: 14px;"></i>
+            </div>
+            <div class="toast-body small p-0">
+                Ticket status changed to Open!
+            </div>
+            <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+
+    <!--  Toast: In Progress -->
+    <div id="toastProgress" class="toast text-white border-0 shadow rounded-3 mb-2"
+         style="background-color: #0091ff; font-family: 'Open Sans', 'Segoe UI'; font-size: 13px;" role="alert" data-bs-delay="2500">
+        <div class="d-flex align-items-center px-3 py-2">
+            <div class=" d-flex align-items-center justify-content-center me-2"
+                 style="width: 24px; height: 24px;">
+                <i class="bi bi-check-circle-fill " style="font-size: 14px;"></i>
+            </div>
+            <div class="toast-body  p-0">
+                Ticket status changed to In Progress!
+            </div>
+            <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+
+    <!-- Toast: Closed -->
+    <div id="toastClosed" class="toast text-white border-0 shadow rounded-3 mb-2"
+         style="background-color: #0091ff; font-family: 'Open Sans', 'Segoe UI'; font-size: 13px;" role="alert" data-bs-delay="2500">
+        <div class="d-flex align-items-center px-3 py-2">
+            <div class=" d-flex align-items-center justify-content-center me-2"
+                 style="width: 24px; height: 24px;">
+                <i class="bi bi-check-circle-fill me-2" style="font-size: 14px;"></i>
+            </div>
+            <div class="toast-body  p-0">
+                Ticket status changed to Closed!
+            </div>
+            <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+
+
+
+</div>
+
+<!-- Delete Success Toast - Top Center -->
+<div id="deleteToast"
+     class="toast text-white border-0 shadow rounded-3 position-fixed start-50 translate-middle-x top-0 mt-4"
+     role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000"
+     style="z-index: 9999; background-color: #0091ff; min-width: 360px; font-family: 'Open Sans', 'Segoe UI'; font-size:13px;">
+    <div class="d-flex align-items-center px-3 py-2">
+        <i class="bi bi-trash me-2 text-white" style="font-size: 14px;"></i>
+        <div class="toast-body p-0">Ticket deleted successfully.</div>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast"></button>
+    </div>
+</div>
+
+
+
+
+<!-- Success Toast -->
+
+<div id="successToast" class="position-fixed top-0 start-50 translate-middle-x mt-3"
+     style="min-width: 400px; max-width: 600px; background-color: #0091ff; color: white; font-family: 'Open Sans', 'Segoe UI'; font-size: 13px; border-radius: 5px; padding: 6px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: none; z-index: 2000; text-align: left;">
+    <i class="bi bi-check-circle-fill me-2"></i> Ticket added successfully.
+</div>
+

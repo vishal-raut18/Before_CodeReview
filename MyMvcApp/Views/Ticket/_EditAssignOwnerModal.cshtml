@@ -1,0 +1,46 @@
+﻿<!-- Edit Assign Owner Modal -->
+<div class="modal fade" id="editAssignOwnerModal" tabindex="-1" aria-labelledby="editAssignOwnerLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 720px;">
+        <div class="modal-content rounded-3">
+            <div class="modal-header pt-3 pb-1 px-4 border-bottom-0">
+                <h5 class="modal-title fw-semibold">Assign Owner (Edit Mode)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <hr class="mt-0 mb-2" />
+
+            <div class="modal-body px-4 pt-0">
+                <p class="fw-semibold mb-3">Select user to assign as owner.</p>
+
+                <!-- Table like original -->
+                <div class="table-responsive" style="max-height: 300px;">
+                    <table class="table table-sm table-bordered align-middle" id="editUserTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>User Type</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-username="John Smith">
+                                <td><input type="radio" name="selectedEditOwner" value="John Smith" /></td>
+                                <td>John Smith</td>
+                                <td>john.smith@example.com</td>
+                                <td>Admin</td>
+                                <td>Support</td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer border-top-0 px-4 pb-3">
+                <button class="btn btn-primary btn-sm px-4" id="confirmEditOwnerBtn">Assign Selected User As Owner</button>
+            </div>
+        </div>
+    </div>
+</div>

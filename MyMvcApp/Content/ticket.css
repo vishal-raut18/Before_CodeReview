@@ -1,0 +1,36 @@
+﻿.table th,
+.table td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.btn {
+    margin: 2px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    font-size: 14px;
+}
+
+.modal-body label {
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.alert {
+    margin-top: 15px;
+}
+
+h3 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}

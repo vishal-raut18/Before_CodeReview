@@ -1,0 +1,50 @@
+﻿<!-- Assign To Modal -->
+<div class="modal fade" id="assignToModal" tabindex="-1" aria-labelledby="assignToLabel" aria-hidden="true"   data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 600px;">
+        <div class="modal-content rounded-2">
+            <div class="modal-header border-bottom-0 pt-3 pb-1 px-4">
+                <h5 class="modal-title fw-semibold" style="font-family: 'Segoe UI'; font-size: 16px;">Assign Tickets</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <hr class="mt-0 mb-2" />
+
+            <div class="modal-body px-4 pt-0" style="max-height: 450px; overflow-y: auto;">
+                <p class="fw-semibold mb-3" style="font-family: 'Segoe UI'; font-size: 14px;">
+                    Please select the user you wish to assign as the owner this ticket.
+                </p>
+
+                <!-- Search + Toggle -->
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                    <div class="input-group input-group-sm me-3 custom-search-wrapper" style="width: 185px; height:31px;">
+                        <span class="input-group-text bg-white border-0 pe-1 search-icon">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control border-0 ps-1 search-input" id="searchAssignee" placeholder="Search Users" style="font-size:12px;">
+                    </div>
+
+                    <div class="d-flex align-items-center small custom-toggle-wrapper">
+                        <label for="filterToggle2" class="form-label text-muted mb-0 me-2">View Search and Filter</label>
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input custom-toggle" type="checkbox" id="filterToggle2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataGrid for Assignee -->
+                <div id="assignGridAssignee" class="mb-3"></div>
+
+                <!-- Pagination Note + Pager -->
+                <div class="text-muted small" style="font-family: 'Open Sans'; font-size: 12px;">
+                    Note: To Select Multiple User Ctrl + click or shift + click (cmd + click for mac)c
+                </div>
+            </div>
+
+            <div class="modal-footer border-top-0 px-4 pb-3">
+                <button class="btn btn-sm px-4 btn-assign-owner" id="assignToBtn">
+                    ASSIGN TO SELECTED USERS
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

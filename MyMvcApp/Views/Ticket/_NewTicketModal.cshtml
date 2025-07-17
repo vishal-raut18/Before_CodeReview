@@ -1,0 +1,154 @@
+﻿<div class="modal fade" id="newTicketModal" tabindex="-1" aria-labelledby="newTicketLabel" aria-hidden="true" data-bs-backdrop="static">
+
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 430px; ">
+        <div class="modal-content border-0 rounded-2 shadow">
+            <div class="modal-header border-bottom-0 px-4 py-3">
+                <h5 class="modal-title " style="font-family: ' Open Sans', 'Segoe UI'; font-size: 16px;  ">New Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <hr class="mt-0 mb-0 border-1" style="width: 100%; margin: 0; padding: 0;" />
+
+
+            <form id="newTicketForm" method="post" action="#" enctype="multipart/form-data">
+               
+                <div class="modal-body px-4 pt-3" style="max-height: 600px; overflow-y: auto; font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+
+                    <!-- 1. Select Computer -->
+                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px; ">
+                        <label class="form-label fw-semibold">Select Computer</label>
+                        <select class="form-select form-select-sm" name="Computer">
+                            <option selected disabled>Search Computers</option> 
+                            <option value="Computer-01">Computer-01</option>
+                            <option value="Computer-02">Computer-02</option>
+                            <option value="Computer-03">Computer-03</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. Owner -->
+                    <!-- Owner -->
+                    <!-- Owner -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Owner</label>
+                        <div class="row g-2">
+                            <div class="col-9">
+                                <input type="text" class="form-control form-control-sm" name="Owner" id="ownerInput" placeholder="Assign an Owner" / style="background-color: #f0f0f0;">
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
+                                        data-bs-toggle="modal" data-bs-target="#assignOwnerModal">
+                                    ADD
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 3. Assigned To -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Assigned To</label>
+                        <div class="row g-2">
+                            <div class="col-9">
+                                <input type="text" class="form-control form-control-sm" name="AssignedTo" id="assignedToInput" placeholder="Assign To" / style="background-color: #f0f0f0;">
+
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
+                                        data-bs-toggle="modal" data-bs-target="#assignToModal">
+                                    ADD
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- 4. Description -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea class="form-control form-control-sm" name="Description" rows="3" maxlength="1000" placeholder="Enter description..."></textarea>
+                        <div class="text-end text-muted small mt-1">0/1000</div>
+                    </div>
+
+                    <!-- 5. Attach File -->
+                    <!-- 5. Attach File -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Attach Files</label>
+
+                        <!-- Upload Button Below Label -->
+                        <div>
+                            <input type="file" class="d-none" name="Attachment" id="fileInput" />
+                            <button type="button" class="btn btn-sm custom-upload-btn mt-1" id="uploadBtn">
+                                Upload
+                            </button>
+                        </div>
+
+                        <!-- File Info / Help -->
+                        <div class="form-text mt-2" style="font-size: 11px;">
+                            Supported File Types: txt, csv, jpg, png, doc, pdf, xls, xlsx, zip<br />
+                            Max size: 5 MB
+                        </div>
+                    </div>
+
+
+                    <!-- 6. Notify User -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Notify User</label>
+                        <input type="email" class="form-control form-control-sm" name="Email" placeholder="user@email.com" />
+                    </div>
+
+                    <!-- 7. Priority -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Priority</label>
+                        <select name="Priority" class="form-select form-select-sm">
+                            <option selected disabled>Select Priority</option>
+                            <option value="P1">P1</option>
+                            <option value="P2">P2</option>
+                            <option value="P3">P3</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer border-top-0 px-4 pb-2 justify-content-end ">
+                    <button type="submit" class="btn btn-primary btn-sm px-4" id="saveTicketBtn" style=" font-family: ' Open Sans', 'Segoe UI'; font-size: 16px;">Save</button>
+
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById("uploadBtn").addEventListener("click", function () {
+        document.getElementById("fileInput").click();
+    });
+</script>
+
+<script>
+    function showSuccessToast() {
+        const toast = document.getElementById('successToast');
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 3000); // Hide after 3 seconds
+    }
+
+</script>
+
+
+<style>
+
+    #newTicketModal .modal-body {
+        scrollbar-color: #a0a0a0 #f0f0f0;
+        scrollbar-width: thin;
+    }
+
+
+</style>

@@ -1,0 +1,27 @@
+﻿@model MyMvcApp.Models.TicketModel
+
+<div class="modal fade show" id="viewTicketModal" tabindex="-1" style="display:block;" aria-modal="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title">Ticket Details - #@Model.Id</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6"><strong>Group:</strong> @Model.Group</div>
+                    <div class="col-md-6"><strong>Tags:</strong> @Model.Tags</div>
+                    <div class="col-md-6"><strong>Status:</strong> @Model.Status</div>
+                    <div class="col-md-6"><strong>Priority:</strong> @Model.Priority</div>
+                    <div class="col-md-6"><strong>Assigned To:</strong> @Model.AssignedTo</div>
+                    <div class="col-md-6"><strong>Owner:</strong> @Model.Owner</div>
+                    <div class="col-md-6"><strong>Username:</strong> @Model.Username</div>
+                    <div class="col-md-6"><strong>Email:</strong> @Model.Email</div>
+                    <div class="col-md-6"><strong>Source:</strong> @Model.Source</div>
+                    <div class="col-md-6"><strong>Date Added:</strong> @Model.DateAdded.ToShortDateString()</div>
+                    <div class="col-md-12"><strong>Description:</strong> @Model.Description</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
