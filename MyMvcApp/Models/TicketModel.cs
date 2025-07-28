@@ -1,11 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace MyMvcApp.Models
+﻿namespace MyMvcApp.Models
 {
     public class TicketModel
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Computer { get; set; }
         public string Group { get; set; }
         public string Tags { get; set; }
@@ -17,12 +14,9 @@ namespace MyMvcApp.Models
         public string Email { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime LastModified { get; set; }
+        public string CreatedAt { get; set; }
+        public string LastModified { get; set; }
         public string Source { get; set; }
         public string Priority { get; set; }
-
     }
-
 }
-

@@ -1,86 +1,61 @@
-﻿$(document).ready(function () {
+﻿$(function () {
+    // Handler for "Mark as Open"
+    $(".change-status-open").on("click", function () {
+        updateTicketStatus("Open", "toastOpen", "bg-success");
+    });
 
-    function updateTicketStatus(newStatus, toastId, colorClass) {
-        const grid = $("#ticketGrid").dxDataGrid("instance");
+    // Handler for "Mark as In Progress"
+    $(".change-status-inprogress").on("click", function () {
+        updateTicketStatus("In Progress", "toastProgress", "bg-warning");
+    });
 
-        if (!grid) {
-            console.warn("DataGrid not found with #ticketGrid.");
-            return;
-        }
+    // Handler for "Close Ticket" button (confirm modal)
+    $("#confirmCloseTicket").on("click", function () {
+        updateTicketStatus("Closed", "toastClosed", "bg-primary");
+        $("#closeTicketModal").modal("hide");
+    });
+});
 
-        const selectedRows = grid.getSelectedRowsData();
+// Generic update function
+function updateTicketStatus(newStatus, toastId, colorClass) {
+    const grid = $("#ticketGrid").dxDataGrid("instance");
 
-        if (selectedRows.length === 0) {
-            alert("Please select at least one ticket to update.");
-            return;
-        }
+    if (!grid) return;
 
-        // Update status of selected rows
-        const dataSource = grid.option("dataSource");
-
-        selectedRows.forEach(selected => {
-            const rowIndex = dataSource.findIndex(r => r.ID === selected.ID);
-            if (rowIndex !== -1) {
-                dataSource[rowIndex].Status = newStatus;
-            }
-        });
-
-        grid.refresh(); // Apply changes
-
-        // Show toast
-        const toastEl = document.getElementById(toastId);
-        if (toastEl) {
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
+    const selectedRows = grid.getSelectedRowsData();
+    if (selectedRows.length === 0) {
+        alert("Please select at least one ticket.");
+        return;
     }
 
-    // Handle status changes
-    $(document).on('click', '.change-status-open', function (e) {
-        e.preventDefault();
-        updateTicketStatus("Open", "toastOpen", "text-success");
-    });
+    const ticketIds = selectedRows.map(r => r.ID);
 
-    $(document).on('click', '.change-status-inprogress', function (e) {
-        e.preventDefault();
-        updateTicketStatus("In Progress", "toastProgress", "text-primary");
-    });
+    $.ajax({
+        type: "POST",
+        url: "/Ticket/UpdateTicketStatus",
+        contentType: "application/json",
+        data: JSON.stringify({
+            ids: ticketIds,
+            newStatus: newStatus
+        }),
+        success: function () {
+            // Update UI grid
+            const dataSource = grid.option("dataSource");
+            ticketIds.forEach(id => {
+                const index = dataSource.findIndex(item => item.ID === id);
+                if (index !== -1) dataSource[index].Status = newStatus;
+            });
+            grid.refresh();
 
-    // Handle Done button in Close Confirmation Modal
-    $(document).on('click', '#confirmCloseTicket', function () {
-        const grid = $("#ticketGrid").dxDataGrid("instance");
-
-        if (!grid) {
-            console.warn("DataGrid not found.");
-            return;
-        }
-
-        const selectedRows = grid.getSelectedRowsData();
-
-        if (selectedRows.length === 0) {
-            alert("Please select at least one ticket to close.");
-            return;
-        }
-
-        const dataSource = grid.option("dataSource");
-
-        selectedRows.forEach(selected => {
-            const rowIndex = dataSource.findIndex(r => r.ID === selected.ID);
-            if (rowIndex !== -1) {
-                dataSource[rowIndex].Status = "Closed";
+            // ✅ Show matching toast
+            const toastEl = document.getElementById(toastId);
+            if (toastEl) {
+                const bsToast = new bootstrap.Toast(toastEl);
+                bsToast.show();
             }
-        });
-
-        grid.refresh(); // Apply changes
-        $("#closeTicketModal").modal("hide"); // Close modal
-
-        // ✅ Show toast
-        const toastEl = document.getElementById("toastClosed");
-        if (toastEl) {
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
+        },
+        error: function () {
+            alert("Failed to update ticket status.");
         }
     });
-
-  
-});
+}

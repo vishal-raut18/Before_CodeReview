@@ -9,13 +9,14 @@
 //  Open New Ticket Modal
 $("#openNewTicketModalBtn").on("click", function () {
     $(".modal").modal("hide"); 
+
     $("#modalContext").val("new"); 
     $("#newTicketForm")[0].reset();
     const newModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("newTicketModal"));
     newModal.show();
 });
 
-// Form Submit + Add Ticket to Grid
+
 $(document).ready(function () {
     $('#newTicketForm').validate({
         rules: {
@@ -30,7 +31,7 @@ $(document).ready(function () {
             Computer: "Please select a computer.",
             Owner: "Owner is required.",
             AssignedTo: "Assigned To is required.",
-            Description: "Description is required.",
+            Description: "This Field  is required.",
             Email: "Enter a valid email.",
             Priority: "Please select a priority."
         },
@@ -40,9 +41,8 @@ $(document).ready(function () {
             e.preventDefault();
 
             const data = {
-                ID: Date.now(),
                 Computer: $('[name="Computer"]').val(),
-                Group: "Default",
+                Group: "Testing",
                 Tags: "",
                 TicketID: "TK-" + Math.floor(100000 + Math.random() * 900000),
                 Status: "Open",
@@ -52,27 +52,45 @@ $(document).ready(function () {
                 Email: $('[name="Email"]').val(),
                 Description: $('[name="Description"]').val(),
                 Notes: "",
-                CreatedAt: new Date().toISOString().split('T')[0],
-                LastModified: new Date().toISOString().split('T')[0],
+                CreatedAt: new Date().toISOString(),
+                LastModified: new Date().toISOString(),
                 Source: "Manual",
                 Priority: $('[name="Priority"]').val()
             };
 
-            const grid = $("#ticketGrid").dxDataGrid("instance");
-            const currentData = grid.option("dataSource");
-            currentData.unshift(data);
-            grid.option("dataSource", currentData);
-            grid.refresh();
+            $.ajax({
+                url: '/Ticket/SaveTicket',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    if (response.success) {
+                        const grid = $("#ticketGrid").dxDataGrid("instance");
+                        const currentData = grid.option("dataSource");
+                        data.ID = response.id; 
+                        currentData.unshift(data);
+                        grid.option("dataSource", currentData);
+                        grid.refresh();
 
-            showSuccessToast();
-            const modal = bootstrap.Modal.getInstance(document.getElementById("newTicketModal"));
-            if (modal) modal.hide();
+                        showSuccessToast();
 
-            $('#newTicketForm')[0].reset();
+                        const modal = bootstrap.Modal.getInstance(document.getElementById("newTicketModal"));
+                        if (modal) modal.hide();
+
+                        $('#newTicketForm')[0].reset();
+                    } else {
+                        alert("Error saving ticket: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Failed to save ticket. Please try again.");
+                }
+            });
         }
+
     });
 
-    // ✅ Trigger file input on upload button click
+    
     $("#uploadBtn").on("click", function () {
         $("#fileInput").click();
     });

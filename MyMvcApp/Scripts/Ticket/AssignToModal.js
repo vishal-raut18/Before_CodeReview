@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
   
-    //  Ensure modalContext is present
+  
     if (!$("#modalContext").length) {
         $("body").append('<input type="hidden" id="modalContext" value="new">');
     }
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     ];
 
-    // ✅ DevExtreme Grid Setup
+   
     const assigneeGrid = $("#assignGridAssignee").dxDataGrid({
         dataSource: assigneeUsers,
         width: "100%",
@@ -46,7 +46,7 @@ $(document).ready(function () {
         ]
     }).dxDataGrid("instance");
 
-    //  Search Assignee Input
+ 
     $("#searchAssignee").on("input", function () {
         const query = $(this).val().toLowerCase();
         const filtered = assigneeUsers.filter(user =>

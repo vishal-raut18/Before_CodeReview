@@ -190,6 +190,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\new-ticket.js" />
     <Content Include="Scripts\status-actions.js" />
+    <Content Include="Scripts\Ticket\description-template.js" />
     <Content Include="Scripts\Ticket\ticket-grid.js" />
     <Content Include="Scripts\ticket-modals.js" />
     <Content Include="Scripts\ticket.js" />

@@ -7,79 +7,80 @@
 }
 
 $(document).ready(function () {
-    //  Edit Ticket Button Click
+    // Edit button clicked
     $(document).on("click", ".edit-ticket-action", function (e) {
         e.preventDefault();
 
-        const grid = window.ticketGridInstance;
-        if (!grid) return alert("Ticket grid not found.");
-
+        const grid = $("#ticketGrid").dxDataGrid("instance");
         const selected = grid.getSelectedRowsData();
-        if (selected.length === 0) return alert("Please select a row to edit.");
 
-        const data = selected[0];
+        if (selected.length === 0) {
+            alert("Please select a ticket to edit.");
+            return;
+        }
 
-        // Fill Edit Modal Fields
-        $("#editComputer").val(data.Computer);
-        $("#editStatus").val(data.Status);
-        $("#editOwner").val(data.Owner);
-        $("#editAssignedTo").val(data.AssignedTo);
-        $("#editDescription").val(data.Description);
-        $("#editEmail").val(data.Email);
-        $("#editPriority").val(data.Priority);
+        const ticket = selected[0];
 
-        $("#editTicketModal").data("ticketId", data.ID);
+        // Populate modal fields
+        $("#editComputer").val(ticket.Computer || "");
+        $("#editStatus").val(ticket.Status || "");
+        $("#editOwner").val(ticket.Owner || "");
+        $("#editAssignedTo").val(ticket.AssignedTo || "");
+        $("#editDescription").val(ticket.Description || "");
+        $("#editEmail").val(ticket.Email || "");
+        $("#editPriority").val(ticket.Priority || "");
+
+        // Store TicketID & DB row ID in modal for update
+        $("#editTicketModal").data("TicketID", ticket.TicketID);
+        $("#editTicketModal").data("ID", ticket.ID);
         $("#modalContext").val("edit");
 
-        // Show Modal
-        const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("editTicketModal"));
-        modal.show();
+       
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("editTicketModal")).show();
     });
 
-    // Update Ticket Button Click
+    // Save / Update
     $(document).on("click", "#updateTicketBtn", function () {
-        const grid = window.ticketGridInstance;
-        const ticketId = $("#editTicketModal").data("ticketId");
-        if (!ticketId || !grid) return;
+        const grid = $("#ticketGrid").dxDataGrid("instance");
 
-        // Extract Fields
-        const updatedTicket = {
+        const id = $("#editTicketModal").data("ID"); // DB ID
+        const ticketId = $("#editTicketModal").data("TicketID");
+
+        const updatedData = {
+            ID: id,
+            TicketID: ticketId,
             Computer: $("#editComputer").val(),
             Status: $("#editStatus").val(),
             Owner: $("#editOwner").val(),
             AssignedTo: $("#editAssignedTo").val(),
-            Email: $("#editEmail").val(),
             Description: $("#editDescription").val(),
-            Priority: $("#editPriority").val(),
-            LastModified: new Date().toISOString().split("T")[0]
+            Email: $("#editEmail").val(),
+            Priority: $("#editPriority").val()
         };
 
-        // Validate Fields
-        for (const key in updatedTicket) {
-            if (!updatedTicket[key]) {
-                alert("All fields are required.");
-                return;
-            }
+        // Update grid
+        const allData = grid.option("dataSource");
+        const index = allData.findIndex(item => item.ID === id);
+        if (index !== -1) {
+            Object.assign(allData[index], updatedData);
+            grid.option("dataSource", allData); // Refresh
+
+            $("#modalContext").val("new");
         }
 
-        // Update Ticket
-        const dataSource = grid.option("dataSource");
-        const index = dataSource.findIndex(t => t.ID === ticketId);
-        if (index === -1) return;
-
-        dataSource[index] = {
-            ...dataSource[index],
-            ...updatedTicket
-        };
-
-        grid.option("dataSource", dataSource);
-        grid.refresh();
-
-        // Hide Modal, Show Toast
-        bootstrap.Modal.getInstance(document.getElementById("editTicketModal")).hide();
-        showSuccessToast();
-
-        // Optional: reset modalContext after update
+        // AJAX: update database
+        $.ajax({
+            url: '/Ticket/UpdateTicket',
+            type: 'POST',
+            data: updatedData,
+            success: function () {
+                bootstrap.Modal.getInstance(document.getElementById("editTicketModal")).hide();
+                showSuccessToast(); // your toast logic
+            },
+            error: function () {
+                alert("Error updating ticket.");
+            }
+        });
         $("#modalContext").val("new");
     });
 });

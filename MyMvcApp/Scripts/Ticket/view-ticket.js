@@ -1,23 +1,24 @@
 ﻿$(document).ready(function () {
-    // Handle click on View Ticket action
+    // View Ticket from Dropdown
     $(document).on("click", ".view-ticket-action", function (e) {
         e.preventDefault();
 
-        const gridInstance = window.ticketGridInstance || window.grid;
+        const gridInstance = $("#ticketGrid").dxDataGrid("instance");
+
         if (!gridInstance) {
             alert("Grid not found.");
             return;
         }
 
         const selectedRows = gridInstance.getSelectedRowsData();
-        if (selectedRows.length === 0) {
+        if (!selectedRows || selectedRows.length === 0) {
             alert("Please select a ticket to view.");
             return;
         }
 
         const data = selectedRows[0];
 
-        // Fill modal with ticket data
+        // Fill modal fields from selected row
         $("#viewTicketId").text(data.TicketID || "-");
         $("#viewComputer").text(data.Computer || "-");
         $("#viewStatus").text(data.Status || "-");
@@ -29,21 +30,20 @@
         $("#viewSource").text(data.Source || "Manual");
         $("#viewPriority").text(data.Priority || "-");
 
-        // Show View Modal
+        // Open View Ticket Modal
         const viewModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("viewTicketModal"));
         viewModal.show();
     });
-    
-    // Handle Edit button inside view modal
+
+    // Handle Edit button inside View Ticket modal
     $(document).on("click", "#viewEditBtn", function () {
-        $("#viewTicketModal").modal("hide"); 
-        $(".edit-ticket-action").trigger("click"); 
+        $("#viewTicketModal").modal("hide");
+        $(".edit-ticket-action").trigger("click");
     });
 
-    //Close ticket button action
+    // Handle Close Ticket button inside View Ticket modal
     $(document).on("click", "#viewCloseTicketBtn", function () {
         $("#viewTicketModal").modal("hide");
         $(".delete-ticket-action").trigger("click");
-       
     });
 });

@@ -1,9 +1,13 @@
 ﻿$(document).ready(function () {
-   
+    console.log("Delete ticket JS loaded.");
+
+    let selectedTicketID = null; // global for use across functions
+
+    // When Delete Ticket action is clicked
     $(document).on("click", ".delete-ticket-action", function (e) {
         e.preventDefault();
 
-        const grid = window.ticketGridInstance;
+        const grid = $("#ticketGrid").dxDataGrid("instance");
         if (!grid) {
             alert("Grid not found");
             return;
@@ -15,37 +19,48 @@
             return;
         }
 
-        // Show delete confirmation modal
+        selectedTicketID = selectedRows[0].TicketID; // get TicketID
+        console.log("Selected TicketID for delete:", selectedTicketID);
+
         const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("deleteTicketModal"));
         modal.show();
     });
 
-    // Confirm deletion
+    // When YES is clicked in Delete modal
     $("#confirmDeleteBtn").on("click", function () {
-        const grid = window.ticketGridInstance;
-        if (!grid) return;
-
-        const selectedKeys = grid.getSelectedRowKeys();
-
-        if (selectedKeys.length === 0) {
-            alert("No rows selected.");
+        if (!selectedTicketID) {
+            alert("No ticket selected.");
             return;
         }
 
-        // Remove selected rows from data source
-        const dataSource = grid.getDataSource();
-        const items = dataSource.items();
+        $.ajax({
+            type: "POST",
+            url: "/Ticket/Delete", // ✅ adjust if your controller is in a different route
+            data: { id: selectedTicketID },
+            success: function (response) {
+                if (response.success) {
+                    // Remove from grid
+                    const grid = $("#ticketGrid").dxDataGrid("instance");
+                    if (grid) {
+                        const currentData = grid.getDataSource().items();
+                        const updatedData = currentData.filter(item => item.TicketID !== selectedTicketID);
+                        grid.option("dataSource", updatedData);
+                        grid.refresh();
+                    }
 
-        // Filter out selected rows
-        const newItems = items.filter(item => !selectedKeys.includes(item.ID));
-        dataSource.store()._array = newItems; // update store directly
-        grid.refresh(); // refresh grid
+                    // Hide modal
+                    bootstrap.Modal.getInstance(document.getElementById("deleteTicketModal")).hide();
 
-        // Close modal
-        bootstrap.Modal.getInstance(document.getElementById("deleteTicketModal")).hide();
-
-        // Show toast
-        const toast = new bootstrap.Toast(document.getElementById("deleteToast"));
-        toast.show();
+                    // Show toast if needed
+                    const toast = new bootstrap.Toast(document.getElementById("deleteToast"));
+                    toast.show();
+                } else {
+                    alert("Delete failed: " + (response.message || "Unknown error"));
+                }
+            },
+            error: function (err) {
+                alert("Error deleting ticket: " + err.responseText);
+            }
+        });
     });
 });
