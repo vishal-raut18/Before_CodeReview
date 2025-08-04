@@ -14,7 +14,7 @@
     background-color: #fff;
     transition: border-color 0.2s;
 }
-*/
+
     .custom-search-wrapper:focus-within {
         border-color: #0091ff;
     }
@@ -115,6 +115,7 @@
 
     .btn-assign-owner:hover {
         background-color: #0091ff;
+        color:white;
     }
 
 #assignToGrid {
@@ -132,8 +133,8 @@
 
 /* Increase toggle switch size */
 .custom-toggle {
-    width: 40px !important;
-    height: 20px !important;
+    width: 35px !important;
+    height: 17px !important;
     transform: scale(1.1);
     cursor: pointer;
 }

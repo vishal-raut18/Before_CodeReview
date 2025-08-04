@@ -23,9 +23,9 @@
         $("#viewComputer").text(data.Computer || "-");
         $("#viewStatus").text(data.Status || "-");
         $("#viewDescription").text(data.Description || "-");
-        $("#viewFiles").text(data.FilesUploaded || "-");
+        $("#viewFiles").text(data.FilesUploaded || "");
         $("#viewYourEmail").text(data.Email || "-");
-        $("#viewEmail").text(data.NotifyUser || "-");
+        $("#viewEmail").text(data.NotifyUser || "vishalralohatechnology@gmail.com");
         $("#viewAssignedTo").text(data.AssignedTo || "-");
         $("#viewSource").text(data.Source || "Manual");
         $("#viewPriority").text(data.Priority || "-");
@@ -44,6 +44,6 @@
     // Handle Close Ticket button inside View Ticket modal
     $(document).on("click", "#viewCloseTicketBtn", function () {
         $("#viewTicketModal").modal("hide");
-        $(".delete-ticket-action").trigger("click");
+        $(".change-status-closed").trigger("click");
     });
 });

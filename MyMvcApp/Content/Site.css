@@ -26,7 +26,7 @@ body, html {
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 100px;
 }
 #wrapper {
     min-height: 100vh;
@@ -231,5 +231,41 @@ table-responsive::-webkit-scrollbar {
 /* Hide default Bootstrap dropdown arrow */
 .ab::after {
     display: none !important;
+    
 }
+
+.grid-filter :focus {
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+}
+
+#customSearch::placeholder {
+    color: #000 !important; /* or any darker color like #333 */
+    font-weight: normal !important;
+    opacity: 1 !important; /* Ensure it's not semi-transparent */
+}
+
+
+.new-ticket-btn {
+    min-width: 100px;
+    height: 23px; 
+    border-radius: 6px; 
+    font-family: ' Open Sans', 'Segoe UI';
+    font-size: 10px; 
+    border: 1px solid #88db2f;
+    color: #88db2f;
+    background-color: transparent;
+}
+    .new-ticket-btn:hover {
+        background-color: #88db2f;
+        color: white;
+        border-color: #88db2f; 
+    }
+
+
+#searchContainer:focus-within {
+    width: 200px !important; /* Expand width on focus */
+}
+
 

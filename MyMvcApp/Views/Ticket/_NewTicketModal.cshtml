@@ -11,28 +11,30 @@
 
 
             <form id="newTicketForm" method="post" action="#" enctype="multipart/form-data">
-               
-                <div class="modal-body px-4 pt-3" style="max-height: 600px; overflow-y: auto; font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+
+                <div class="modal-body px-4 pt-3" style="max-height: 470px; overflow-y: auto; font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
 
                     <!-- 1. Select Computer -->
-                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px; ">
-                        <label class="form-label fw-semibold">Select Computer</label>
-                        <select class="form-select form-select-sm" name="Computer">
-                            <option selected disabled>Search Computers</option> 
+                    <!-- 1. Select Computer -->
+                    <div class="mb-3 " style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px; ">
+                        <label class="form-label   fw-semibold">Select Computer</label>
+                        <select class="form-select form-select-sm styled-select" name="Computer">
+                            <option selected disabled hidden>Search Computers</option>
+                            <option value="">No Computer Selected</option>
+
                             <option value="Computer-01">Computer-01</option>
                             <option value="Computer-02">Computer-02</option>
                             <option value="Computer-03">Computer-03</option>
                         </select>
                     </div>
-
                     <!-- 2. Owner -->
-                    <!-- Owner -->
-                    <!-- Owner -->
+
+
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Owner</label>
                         <div class="row g-2">
                             <div class="col-9">
-                                <input type="text" class="form-control form-control-sm" name="Owner" id="ownerInput" placeholder="Assign an Owner" / style="background-color: #f0f0f0;">
+                                <input type="text" class="form-control form-control-sm" name="Owner" id="ownerInput" placeholder="Assign an Owner" readonly / style="background-color: #f0f0f0;">
                             </div>
                             <div class="col-3">
                                 <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
@@ -49,7 +51,7 @@
                         <label class="form-label fw-semibold">Assigned To</label>
                         <div class="row g-2">
                             <div class="col-9">
-                                <input type="text" class="form-control form-control-sm" name="AssignedTo" id="assignedToInput" placeholder="Assign To" / style="background-color: #f0f0f0;">
+                                <input type="text" class="form-control form-control-sm" name="AssignedTo" id="assignedToInput" placeholder="John Smith(Admin),John Doe(Supperadmin)		" readonly / style="background-color: #f0f0f0;">
 
                             </div>
                             <div class="col-3">
@@ -66,9 +68,15 @@
                     <!-- 4. Description -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Description</label>
-                        <textarea class="form-control form-control-sm" name="Description" rows="3" maxlength="1000" placeholder="Enter description..."></textarea>
-                        <div class="text-end text-muted small mt-1">0/1000</div>
+                        <textarea id="descriptionField" class="form-control form-control-sm" name="Description" rows="3" placeholder=""></textarea>
+                        <div class="text-end small mt-1">
+                            <span id="descCount" class="text-muted">0</span>/1000
+                        </div>
+                        <div id="descError" class="invalid-feedback d-none">
+                            Maximum 1000 characters allowed.
+                        </div>
                     </div>
+
 
                     <!-- 5. Attach File -->
                     <!-- 5. Attach File -->
@@ -79,7 +87,7 @@
                         <div>
                             <input type="file" class="d-none" name="Attachment" id="fileInput" />
                             <button type="button" class="btn btn-sm custom-upload-btn mt-1" id="uploadBtn">
-                                Upload
+                                UPLOAD
                             </button>
                         </div>
 
@@ -98,10 +106,10 @@
                     </div>
 
                     <!-- 7. Priority -->
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <label class="form-label fw-semibold">Priority</label>
                         <select name="Priority" class="form-select form-select-sm">
-                            <option selected disabled>Select Priority</option>
+                            <option selected disabled>Select </option>
                             <option value="P1">P1</option>
                             <option value="P2">P2</option>
                             <option value="P3">P3</option>
@@ -112,7 +120,7 @@
 
                 <!-- Footer -->
                 <div class="modal-footer border-top-0 px-4 pb-2 justify-content-end ">
-                    <button type="submit" class="btn btn-primary btn-sm px-4" id="saveTicketBtn" style=" font-family: ' Open Sans', 'Segoe UI'; font-size: 16px;">Save</button>
+                    <button type="submit" class="btn btn-primary btn-sm px-4" id="saveTicketBtn" style=" font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">SAVE</button>
 
 
                 </div>
@@ -138,17 +146,54 @@
         setTimeout(() => {
             toast.style.display = 'none';
         }, 3000); // Hide after 3 seconds
-    }
+    } 
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+
+        // Track how the modal was closed
+        let shouldResetNewTicketForm = false;
+
+        // 🟩 Mark reset true when user clicks close button
+        $('#newTicketModal .btn-close, #newTicketModal .modal-footer .btn-secondary').on('click', function () {
+            shouldResetNewTicketForm = true;
+        });
+
+        // 🟥 Mark reset false when opening a sub modal (not user closing)
+        $('#assignOwnerModal, #assignToModal').on('show.bs.modal', function () {
+            shouldResetNewTicketForm = false;
+        });
+
+        // ✅ On New Ticket modal hidden: Reset only if flagged
+        document.getElementById('newTicketModal').addEventListener('hidden.bs.modal', function () {
+            if (shouldResetNewTicketForm) {
+                $('#newTicketForm')[0].reset();
+                $('#newTicketForm').validate().resetForm();
+                $('.form-control').removeClass('is-valid is-invalid');
+            }
+            // Always reset the flag
+            shouldResetNewTicketForm = false;
+        });
+
+        // ✅ When sub modal closes, re-show New Ticket modal if in "new" context
+        $('#assignOwnerModal, #assignToModal').on('hidden.bs.modal', function () {
+            if ($("#modalContext").val() === "new") {
+                const parentModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("newTicketModal"));
+                parentModal.show();
+            }
+        });
+
+        // Fix modal stacking issue
+        $('#assignOwnerModal, #assignToModal').on('shown.bs.modal', function () {
+            $('body').addClass('modal-open');
+        });
+    });
 
 </script>
 
 
-<style>
-
-    #newTicketModal .modal-body {
-        scrollbar-color: #a0a0a0 #f0f0f0;
-        scrollbar-width: thin;
-    }
 
 
-</style>

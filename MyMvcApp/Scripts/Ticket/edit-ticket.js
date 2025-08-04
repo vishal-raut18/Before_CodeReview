@@ -22,7 +22,16 @@ $(document).ready(function () {
         const ticket = selected[0];
 
         // Populate modal fields
-        $("#editComputer").val(ticket.Computer || "");
+        if (ticket.Computer && ticket.Computer.trim() !== "") {
+            
+            $("#editComputerReadonly").val(ticket.Computer).show();
+            $("#editComputerDropdown").hide();
+        } else {
+          
+            $("#editComputerReadonly").hide();
+            $("#editComputerDropdown").val("").show();
+        }
+
         $("#editStatus").val(ticket.Status || "");
         $("#editOwner").val(ticket.Owner || "");
         $("#editAssignedTo").val(ticket.AssignedTo || "");
@@ -30,7 +39,7 @@ $(document).ready(function () {
         $("#editEmail").val(ticket.Email || "");
         $("#editPriority").val(ticket.Priority || "");
 
-        // Store TicketID & DB row ID in modal for update
+       
         $("#editTicketModal").data("TicketID", ticket.TicketID);
         $("#editTicketModal").data("ID", ticket.ID);
         $("#modalContext").val("edit");
@@ -43,13 +52,16 @@ $(document).ready(function () {
     $(document).on("click", "#updateTicketBtn", function () {
         const grid = $("#ticketGrid").dxDataGrid("instance");
 
-        const id = $("#editTicketModal").data("ID"); // DB ID
+        const id = $("#editTicketModal").data("ID");
         const ticketId = $("#editTicketModal").data("TicketID");
 
         const updatedData = {
             ID: id,
             TicketID: ticketId,
-            Computer: $("#editComputer").val(),
+            Computer: $("#editComputerReadonly").is(":visible")
+                ? $("#editComputerReadonly").val()
+                : $("#editComputerDropdown").val(),
+
             Status: $("#editStatus").val(),
             Owner: $("#editOwner").val(),
             AssignedTo: $("#editAssignedTo").val(),
@@ -63,7 +75,7 @@ $(document).ready(function () {
         const index = allData.findIndex(item => item.ID === id);
         if (index !== -1) {
             Object.assign(allData[index], updatedData);
-            grid.option("dataSource", allData); // Refresh
+            grid.option("dataSource", allData); 
 
             $("#modalContext").val("new");
         }
@@ -75,7 +87,7 @@ $(document).ready(function () {
             data: updatedData,
             success: function () {
                 bootstrap.Modal.getInstance(document.getElementById("editTicketModal")).hide();
-                showSuccessToast(); // your toast logic
+                showSuccessToast(); 
             },
             error: function () {
                 alert("Error updating ticket.");
@@ -83,4 +95,7 @@ $(document).ready(function () {
         });
         $("#modalContext").val("new");
     });
+
+
+    
 });

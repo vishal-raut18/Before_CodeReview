@@ -1,12 +1,12 @@
 ﻿<!-- View Ticket Modal -->
 <div class="modal fade" id="viewTicketModal" tabindex="-1" aria-labelledby="viewTicketLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px; max-height:700px">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px; max-height:470px">
         <!-- Reduced width -->
         <div class="modal-content" style="border-radius: 6px; font-family: ' Open Sans', 'Segoe UI'; font-size: 13px;">
 
             <!-- Modal Header -->
             <div class="modal-header border-bottom-0 px-4 pt-3 pb-2">
-                <h6 class="modal-title fw-semibold" id="viewTicketLabel" style="font-size: 15px;">Ticket: <span id="viewTicketId"></span></h6>
+                <h6 class="modal-title fw-semibold" id="viewTicketLabel" style="font-size: 15px;">Ticket: #<span id="viewTicketId"></span></h6>
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -28,14 +28,21 @@
 
 
                 <!-- Ticket Info -->
-                <div class="mb-3"><div class="fw-semibold">Status</div><div id="viewStatus"></div></div>
-                <div class="mb-3"><div class="fw-semibold">Description</div><div id="viewDescription"></div></div>
-                <div class="mb-3"><div class="fw-semibold">Files Uploaded</div><div id="viewFiles">-</div></div>
-                <div class="mb-3"><div class="fw-semibold">Your Email</div><div></div>vishalr@alohatechnologydev.com</div>
-                <div class="mb-3"><div class="fw-semibold">Notify User (Optional)</div><div id="viewEmail"></div></div>
-                <div class="mb-3"><div class="fw-semibold">Assigned To</div><div id="viewAssignedTo"></div></div>
-                <div class="mb-3"><div class="fw-semibold">Source</div><div id="viewSource">Manual</div></div>
-                <div class="mb-3"><div class="fw-semibold">Priority</div><div id="viewPriority"></div></div>
+                <div class="mb-4"><div class="fw-semibold ">Status</div><div id="viewStatus"></div></div>
+                <div class="mb-4"><div class="fw-semibold">Description</div><div id="viewDescription"></div></div>
+                <div class="mb-4"><div class="fw-semibold">Files Uploaded</div><div id="viewFiles"></div></div>
+
+                <div class="mb-4">
+                    <div class="fw-semibold">Your Email</div>
+                    <div id="viewEmail"></div>
+                </div>
+                <div class="mb-4">
+                    <div class="fw-semibold">Notify User (Optional)</div>
+                    <div id="viewYourEmail"></div>
+                </div>
+                <div class="mb-4"><div class="fw-semibold">Assigned To</div><div id="viewAssignedTo"></div></div>
+                <div class="mb-4"><div class="fw-semibold">Source</div><div id="viewSource">Manual</div></div>
+                <div class="mb-4"><div class="fw-semibold">Priority</div><div id="viewPriority"></div></div>
 
             </div>
 

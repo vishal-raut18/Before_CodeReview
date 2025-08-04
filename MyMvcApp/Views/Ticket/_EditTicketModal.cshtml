@@ -11,18 +11,24 @@
 
             <form id="editTicketForm">
                 
-                <div class="modal-body px-4 pt-3" style="max-height: 650px; overflow-y: auto; font-family: 'Open Sans', 'Segoe UI'; font-size: 14px;">
+                <div class="modal-body px-4 pt-3" style="max-height: 470px; overflow-y: auto; font-family: 'Open Sans', 'Segoe UI'; font-size: 14px;">
 
-                    <!-- 1. Select Computer -->
-                    <div class="mb-3 " style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
-                        <label class="form-label fw-semibold">Select Computer</label>
-                        <select class="form-select form-select-sm" name="Computer" id="editComputer">
-                            <option value="" disabled selected>Select Cccchgomputer</option>
-                            <option value="Computer-01">Computer-01</option>
-                            <option value="Computer-02">Computer-02</option>
-                            <option value="Computer-03">Computer-03</option>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Computer</label>
+
+                        <!-- Readonly Input (for already selected computer) -->
+                        <input type="text" id="editComputerReadonly" class="form-control form-control-sm" readonly style="display: none;" />
+
+                        <!-- Dropdown (for new selection) -->
+                        <select id="editComputerDropdown" class="form-select form-select-sm" style="display: none;">
+                            <option disabled selected value="">Select a computer</option>
+                            <option value="Computer-1">Computer-1</option>
+                            <option value="Computer-2">Computer-2</option>
+                            <option value="Computer-3">Computer-3</option>
+                            <!-- Add your actual list here -->
                         </select>
                     </div>
+
 
                     <!-- 2. Status -->
                     <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
@@ -39,7 +45,7 @@
                         <label class="form-label fw-semibold">Owner</label>
                         <div class="row g-2">
                             <div class="col-9">
-                                <input type="text" class="form-control form-control-sm" id="editOwner" placeholder="Assign an Owner" style="background-color: #f0f0f0;" />
+                                <input type="text" class="form-control form-control-sm" id="editOwner" placeholder="Assign an Owner" readonly / style="background-color: #f0f0f0;" />
                             </div>
                             <div class="col-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
                                 <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
@@ -55,7 +61,7 @@
                         <label class="form-label fw-semibold">Assigned To</label>
                         <div class="row g-2">
                             <div class="col-9">
-                                <input type="text" class="form-control form-control-sm" id="editAssignedTo" placeholder="Assign To" style="background-color: #f0f0f0;" />
+                                <input type="text" class="form-control form-control-sm" id="editAssignedTo" placeholder="Assign To" readonly / style="background-color: #f0f0f0;" />
                             </div>
                             <div class="col-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
                                 <button type="button" class="btn btn-sm btn-outline-primary w-100 custom-add-btn"
@@ -67,10 +73,12 @@
                     </div>
 
                     <!-- 5. Description -->
-                    <div class="mb-3" style="font-family: ' Open Sans', 'Segoe UI'; font-size: 14px;">
+                    <div class="mb-3" style="font-family: 'Open Sans', 'Segoe UI'; font-size: 14px;">
                         <label class="form-label fw-semibold">Description</label>
                         <textarea class="form-control form-control-sm" id="editDescription" rows="3" maxlength="1000" placeholder="Enter description..."></textarea>
-                        <div class="text-end text-muted small mt-1">0/1000</div>
+                        <div class="text-end text-muted small mt-1">
+                            <span id="editDescriptionCount">0</span>/1000
+                        </div>
                     </div>
 
                     <!-- 6. Notify User -->
@@ -101,3 +109,40 @@
 </div>
 
 
+<script>
+
+    $(document).ready(function () {
+
+        // ✅ When submodal closes, show Edit Ticket modal if it was open
+        $('#assignOwnerModal, #assignToModal').on('hidden.bs.modal', function () {
+            if ($("#modalContext").val() === "edit") {
+                const editModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("editTicketModal"));
+                editModal.show();
+            }
+        });
+
+        // ✅ Fix Bootstrap issue: restore modal-open class for body
+        $('#assignOwnerModal, #assignToModal').on('shown.bs.modal', function () {
+            $('body').addClass('modal-open');
+        });
+
+    });
+
+</script>
+<script>
+
+    $(document).ready(function () {
+        // Update description count on input
+        $("#editDescription").on("input", function () {
+            const currentLength = $(this).val().length;
+            $("#editDescriptionCount").text(currentLength);
+        });
+
+        // When opening the edit modal, also update count
+        $(document).on("click", ".edit-ticket-action", function () {
+            const desc = $("#editDescription").val() || "";
+            $("#editDescriptionCount").text(desc.length);
+        });
+    });
+
+</script>

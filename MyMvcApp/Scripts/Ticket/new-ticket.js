@@ -20,20 +20,16 @@ $("#openNewTicketModalBtn").on("click", function () {
 $(document).ready(function () {
     $('#newTicketForm').validate({
         rules: {
-            Computer: { required: true },
-            Owner: { required: true },
-            AssignedTo: { required: true },
-            Description: { required: true, minlength: 5 },
-            Email: { required: true, email: true },
-            Priority: { required: true }
+           
+            Description: { required: true, minlength: 1 }
+           
+            
         },
         messages: {
-            Computer: "Please select a computer.",
-            Owner: "Owner is required.",
-            AssignedTo: "Assigned To is required.",
+           
             Description: "This Field  is required.",
-            Email: "Enter a valid email.",
-            Priority: "Please select a priority."
+           
+           
         },
         errorClass: 'text-danger small',
 
@@ -41,7 +37,7 @@ $(document).ready(function () {
             e.preventDefault();
 
             const data = {
-                Computer: $('[name="Computer"]').val(),
+                Computer: $('[name="Computer"]').val() === "No Computer Selected" ? "" : $('[name="Computer"]').val(),
                 Group: "Testing",
                 Tags: "",
                 TicketID: "TK-" + Math.floor(100000 + Math.random() * 900000),
@@ -54,6 +50,7 @@ $(document).ready(function () {
                 Notes: "",
                 CreatedAt: new Date().toISOString(),
                 LastModified: new Date().toISOString(),
+                LastModifiedBy:"vishalr@alohatechnology.com",
                 Source: "Manual",
                 Priority: $('[name="Priority"]').val()
             };
@@ -91,7 +88,29 @@ $(document).ready(function () {
     });
 
     
-    $("#uploadBtn").on("click", function () {
-        $("#fileInput").click();
-    });
+   
 });
+
+const descField = document.getElementById('descriptionField');
+const descCount = document.getElementById('descCount');
+const descError = document.getElementById('descError');
+const maxLength = 1000;
+
+descField.addEventListener('input', () => {
+    const currentLength = descField.value.length;
+    descCount.textContent = currentLength;
+
+    if (currentLength > maxLength) {
+        descField.classList.add('is-invalid');
+        descError.classList.remove('d-none');
+        descCount.classList.remove('text-muted');
+        descCount.classList.add('text-danger');
+    } else {
+        descField.classList.remove('is-invalid');
+        descError.classList.add('d-none');
+        descCount.classList.add('text-muted');
+        descCount.classList.remove('text-danger');
+    }
+});
+
+

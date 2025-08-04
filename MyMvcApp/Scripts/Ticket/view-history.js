@@ -19,7 +19,8 @@
         $("#historyFiles").text(ticket.Files || "No File Uploaded");
         $("#historyOwner").text(ticket.Owner || "-");
         $("#historyAssignedTo").text(ticket.AssignedTo || "-");
-        $("#historyNotifyUser").text(ticket.NotifyUser || "-");
+
+        $("#historyNotifyUser").text(ticket.Email || "-");
         $("#historySource").text(ticket.Source || "Manual");
         $("#historyPriority").text(ticket.Priority || "-");
 

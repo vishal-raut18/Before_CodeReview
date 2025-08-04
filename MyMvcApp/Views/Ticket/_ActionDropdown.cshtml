@@ -18,7 +18,7 @@
         </a>
 
         <a class="dropdown-item d-flex align-items-center change-status-closed" href="#"
-           data-bs-toggle="modal" data-bs-target="#closeTicketModal" style="font-family: ' Open Sans', 'Segoe UI';">
+           style="font-family: ' Open Sans', 'Segoe UI';">
             <i class="bi bi-x-circle me-2"></i> Closed
         </a>
 
@@ -31,8 +31,8 @@
 
 
 
-        <a class="dropdown-item d-flex align-items-center delete-ticket-action "  href="#">
-            <i class="bi bi-trash me-2"></i> Delete Ticket 
+        <a class="dropdown-item d-flex align-items-center delete-ticket-action " href="#">
+            <i class="bi bi-trash me-2"></i> Delete Ticket
         </a>
 
 
@@ -56,53 +56,112 @@
             <i class="bi bi-clock-history me-2"></i> View History
         </a>
 
-
+        <hr class="my-1" />
         <!-- REMOTE NESTED DROPDOWN -->
-        <div class="dropend">
-            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#" data-bs-toggle="dropdown" style="font-family: ' Open Sans', 'Segoe UI'; ">
+        <!-- REMOTE NESTED DROPDOWN -->
+        <div class="dropend position-relative" id="remoteDropdownContainer">
+            <a class="dropdown-item d-flex justify-content-between align-items-center" href="#" id="remoteDropdownToggle" role="button">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-laptop me-2"></i> Remote
                 </div>
                 <i class="bi bi-chevron-right ms-2 small"></i>
             </a>
-            <ul class="dropdown-menu dropdown-submenu shadow-sm border-0" style="font-size: 13px; border-radius: 8px; min-width: 200px;">
 
-                <div class="px-3 py-2 text-muted small">Remote Options</div>
-
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
-                        <i class="bi bi-laptop me-2"></i> Remote Pro
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
-                        <i class="bi bi-display me-2"></i> View Screen
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
-                        <i class="bi bi-box-arrow-in-right me-2"></i> RDP
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
-                        <i class="bi bi-diagram-3 me-2"></i> VNC
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';">
-                        <i class="bi bi-sliders me-2"></i> VNC Setup
-                    </a>
-                </li>
+            <ul class="dropdown-menu dropdown-submenu shadow-sm border-0" id="remoteDropdownMenu"
+                style="display: none; font-size: 13px; border-radius: 8px; min-width: 200px; z-index: 1050; font-family: 'Open Sans', 'Segoe UI';">
+                <li class="px-3 py-2 text-muted small">REMOTE INTO COMPUTER</li>
+                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-laptop me-2"></i> Remote Pro</a></li>
+                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-display me-2"></i> View Screen</a></li>
+                <hr class="my-1" />
+                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-box-arrow-in-right me-2"></i> RDP</a></li>
+                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-diagram-3 me-2"></i> VNC</a></li>
+                <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bi bi-sliders me-2"></i> VNC Setup</a></li>
                 <li class="dropdown-item d-flex justify-content-between align-items-center px-3">
+                    <!-- Left content -->
                     <div class="d-flex align-items-center">
                         <i class="bi bi-box-arrow-left me-2"></i>
                         <span>Log Off User</span>
                     </div>
-                    <input type="checkbox" class="form-check-input" />
+
+                    <!-- Right icons -->
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-gear me-2 text-secondary" style="cursor:pointer;"></i>
+                        <i class="bi bi-circle-fill text-muted" style="cursor:pointer;"></i>
+                    </div>
                 </li>
+
             </ul>
         </div>
 
+
     </div>
 </div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.getElementById("remoteDropdownToggle");
+        const menu = document.getElementById("remoteDropdownMenu");
+        const container = document.getElementById("remoteDropdownContainer");
+
+        toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+          
+            const isVisible = menu.style.display === "block";
+            menu.style.display = isVisible ? "none" : "block";
+
+          
+            menu.style.left = "100%";
+            menu.style.right = "auto";
+            menu.style.top = "0px";
+
+         
+            const toggleRect = toggle.getBoundingClientRect();
+            const menuRect = menu.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+           
+            if (toggleRect.right + 200 > viewportWidth) {
+                menu.style.left = "auto";
+                menu.style.right = "100%";
+            }
+
+           
+            const remainingHeight = viewportHeight - toggleRect.top;
+            if (menuRect.height > remainingHeight) {
+                const overflow = menuRect.height - remainingHeight + 10;
+                menu.style.top = `-${overflow}px`;
+            }
+        });
+
+       
+        menu.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+
+        
+        document.addEventListener("click", function (e) {
+            if (!container.contains(e.target)) {
+                menu.style.display = "none";
+            }
+        });
+    });
+</script>
+<style>
+    .dropdown-submenu {
+        top: 0;
+    }
+
+    .dropdown-menu {
+        overflow: visible;
+    }
+
+        /* Prevent overflow from being cut off */
+        .dropdown-menu .dropdown-submenu {
+            z-index: 1060;
+        }
+</style>

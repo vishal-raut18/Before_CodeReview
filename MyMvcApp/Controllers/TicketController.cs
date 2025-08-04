@@ -30,7 +30,7 @@ namespace MyMvcApp.Controllers
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Tickets";
+                string query = "SELECT * FROM Tickets  ORDER BY CreatedAt DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
 
@@ -54,6 +54,7 @@ namespace MyMvcApp.Controllers
                             Notes = reader["Notes"].ToString(),
                             CreatedAt = Convert.ToDateTime(reader["CreatedAt"]).ToString("yyyy-MM-dd HH:mm:ss"),
                             LastModified = Convert.ToDateTime(reader["LastModified"]).ToString("yyyy-MM-dd HH:mm:ss"),
+                            LastModifiedBy = reader["LastModifiedBy"].ToString(),
                             Source = reader["Source"].ToString(),
                             Priority = reader["Priority"].ToString()
                         });
@@ -75,9 +76,9 @@ namespace MyMvcApp.Controllers
                 {
                     conn.Open();
                     string query = @"INSERT INTO Tickets 
-            (Computer, [Group], Tags, TicketID, Status, Owner, AssignedTo, Username, Email, Description, Notes, CreatedAt, LastModified, Source, Priority)
+            (Computer, [Group], Tags, TicketID, Status, Owner, AssignedTo, Username, Email, Description, Notes, CreatedAt, LastModified, Source, Priority,LastModifiedBy)
             VALUES 
-            (@Computer, @Group, @Tags, @TicketID, @Status, @Owner, @AssignedTo, @Username, @Email, @Description, @Notes, @CreatedAt, @LastModified, @Source, @Priority);
+            (@Computer, @Group, @Tags, @TicketID, @Status, @Owner, @AssignedTo, @Username, @Email, @Description, @Notes, @CreatedAt, @LastModified, @Source, @Priority,@LastModifiedBy);
             SELECT SCOPE_IDENTITY();  SELECT CAST(SCOPE_IDENTITY() AS INT);  -- ✅ This returns the newly inserted ID
 ";
 
@@ -98,7 +99,7 @@ namespace MyMvcApp.Controllers
                         cmd.Parameters.AddWithValue("@LastModified", DateTime.Now);
                         cmd.Parameters.AddWithValue("@Source", ticket.Source ?? "Manual");
                         cmd.Parameters.AddWithValue("@Priority", ticket.Priority ?? "Low");
-
+                        cmd.Parameters.AddWithValue("@LastModifiedBy", ticket.LastModifiedBy ?? "vishalr@alohatechnology.com");
                         int insertedId = Convert.ToInt32(cmd.ExecuteScalar()); // Get auto-generated ID
                         return Json(new { success = true, message = "Ticket saved successfully", id = insertedId });
                     }
@@ -109,12 +110,7 @@ namespace MyMvcApp.Controllers
                 return Json(new { success = false, message = "Error saving ticket: " + ex.Message });
             }
         }
-
-
-
-
-
-
+         
         // GET: /Ticket/Edit/{id}
         public ActionResult Edit(int id)
         {
@@ -264,10 +260,9 @@ namespace MyMvcApp.Controllers
 
             return Json(new { success = true });
         }
-
-
+         
         [HttpPost]
-        public JsonResult Delete(string id)
+        public JsonResult Delete(string[] id)  // Accept array of IDs
         {
             try
             {
@@ -277,21 +272,26 @@ namespace MyMvcApp.Controllers
                 {
                     conn.Open();
 
-                    string query = "DELETE FROM Tickets WHERE TicketID = @TicketID";
+                    int totalDeleted = 0;
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    foreach (var ticketID in id)
                     {
-                        cmd.Parameters.AddWithValue("@TicketID", id);
-                        int rowsAffected = cmd.ExecuteNonQuery();
+                        string query = "DELETE FROM Tickets WHERE TicketID = @TicketID";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@TicketID", ticketID);
+                            totalDeleted += cmd.ExecuteNonQuery();
+                        }
+                    }
 
-                        if (rowsAffected > 0)
-                        {
-                            return Json(new { success = true });
-                        }
-                        else
-                        {
-                            return Json(new { success = false, message = "Ticket not found." });
-                        }
+                    if (totalDeleted > 0)
+                    {
+                        return Json(new { success = true });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "No tickets found to delete." });
                     }
                 }
             }
@@ -300,10 +300,7 @@ namespace MyMvcApp.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
-
-
-
-
+          
         [HttpPost]
         public ActionResult UpdateTicket(TicketModel model)
         {

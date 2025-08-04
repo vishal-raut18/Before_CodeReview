@@ -3,17 +3,17 @@
 @{
     ViewBag.Title = "Tickets";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}<div style="background-color: white; padding: 20px 30px; margin-right: -30px; height:90vh !important;">
+}<div style="background-color: white; padding: 20px 30px; margin-right: -30px; height:80vh !important;">
     <div class="d-flex justify-content-between align-items-center mb-3  ">
         <span class="d-flex align-items-center mb-0" style="font-family: ' Open Sans', 'Segoe UI' !important; font-size: 18px; color: #0091ff; ">
             Incoming Ticket Report
             <span class="ml-0" style="color: inherit;">
                 <!-- Column Dropdown -->
-               
 
-                <div class="dropdown">
+
+                <div class="dropdown grid-filter">
                     <button class="btn dropdown-toggle px-2 py-1 text-muted small ab" type="button" data-bs-toggle="dropdown"
-                            style="font-family: 'Open Sans', 'Segoe UI';">
+                            style="font-family: 'Open Sans', 'Segoe UI'; border:none !important;">
                         <i class="bi bi-filter-circle me-1" style="font-size: 23px; width: 80px;"></i>
                     </button>
 
@@ -38,16 +38,11 @@
 
 
             <!-- New Ticket Button (Outlined Green) -->
-            <button class="btn  btn-sm d-flex align-items-center justify-content-center px-3 py-1"
-                    style=" min-width: 100px; height: 23px; border-radius: 6px; font-family: ' Open Sans', 'Segoe UI'; font-size: 10px; border: 1px solid #88db2f; color: #88db2f; background-color: transparent;"
+            <button class="btn  btn-sm d-flex align-items-center justify-content-center px-3 py-1 new-ticket-btn"
                     data-bs-toggle="modal" data-bs-target="#newTicketModal">
 
                 NEW TICKET
             </button>
-
-
-
-
 
             <!-- Export Report Styled Dropdown Box -->
             <div>
@@ -94,23 +89,42 @@
 
             <!-- Custom Search Box -->
             <div id="customSearchWrapper" style="padding-top: 1px;">
-                <div class="position-relative" style="min-width: 200px;">
+                <div class="position-relative" id="searchContainer" style="min-width: 100px; transition: width 0.3s;">
                     <i class="bi bi-search position-absolute"
-                       style="top: 50%; left: 8px; transform: translateY(-50%); color: #6c757d; font-size: 13px;"></i>
+                       style="top: 50%; left: 8px; transform: translateY(-50%); color: black; font-size: 13px;"></i>
+
+                    <i class="bi bi-x-lg position-absolute clear-icon"
+                       id="clearSearch"
+                       style="top: 50%; right: 8px; transform: translateY(-50%); color: #888; font-size: 11px;
+              cursor: pointer; display: none; z-index: 10;"></i>
 
                     <input type="text" id="customSearch"
                            class="form-control form-control-sm border-0 shadow-none"
                            placeholder="Search"
                            style="background-color: transparent; border-bottom: 1px solid #ccc; border-radius: 0;
-                              padding-left: 30px; font-size: 13px; font-family: 'Open Sans', 'Segoe UI';  " />
+                  padding-left: 30px; padding-right: 20px; font-size: 13px; font-family: 'Open Sans', 'Segoe UI';
+                  transition: width 0.3s;" />
                 </div>
+
+            </div>
+            <!-- Selection Badge (Initially Hidden) -->
+
+            <div id="selectionBadge"
+                 class="d-flex align-items-center ms-1 px-3 py-1 rounded-pill text-white d-none"
+                 style="background-color: #0091ff; font-size: 13px; height: 30px;">
+
+                <span>Selected <span id="selectedCount">0</span></span>
+
+                <button type="button"
+                        class="ms-2 d-flex align-items-center justify-content-center p-0"
+                        onclick="clearSelection()"
+                        style="width: 18px; height: 18px; border-radius: 50%; background-color: #fff; border: none;">
+                    <span style="font-size: 12px; color: #0091ff; line-height: 1;">×</span>
+                </button>
             </div>
 
-            <!-- Selection Badge (Initially Hidden) -->
-            <div id="selectionBadge" class="badge-container d-none">
-                <span>Selected <span id="selectedCount">0</span></span>
-                <button class="close-btn" onclick="clearSelection()">×</button>
-            </div>
+
+
 
             <!-- Spacer -->
             <div class="flex-grow-1"></div>
@@ -152,7 +166,7 @@
         </div>
     }
 
-    <div id="ticketGridWrapper" style="margin-left:-20px; ">
+    <div id="ticketGridWrapper" style="margin-left:-20px;  height: calc(100vh - 200px); overflow: hidden; ">
         <div id="ticketGrid"></div>
     </div>
 
@@ -181,7 +195,7 @@
 
             <div class="modal-body px-0 pt-2 pb-0">
 
-                <
+
                 <div class="w-100 py-2 px-4 mb-3" style="background-color: #f0f0f0;">
                     This action will close the selected ticket(s)
                 </div>
@@ -235,6 +249,23 @@
 @Html.Partial("_AssignOwnerModal")
 @Html.Partial("_AssignToModal")
 
+<script>
+    $(document).ready(function () {
+        const $input = $('#customSearch');
+        const $clearIcon = $('#clearSearch');
+
+        // Show/hide clear icon when input changes
+        $input.on('input', function () {
+            $clearIcon.toggle($(this).val().length > 0);
+        });
+
+        // Prevent blur before clear by using mousedown instead of click
+        $clearIcon.on('mousedown', function (e) {
+            e.preventDefault(); // Prevent input from losing focus
+            $input.val('').trigger('input'); // Clear input instantly
+        });
+    });
+</script>
 
 
 
@@ -251,7 +282,7 @@
     <script src="~/Scripts/Ticket/view-history.js"></script>
     <script src="~/Scripts/Ticket/AssignOwner.js"></script>
     <script src="~/Scripts/Ticket/AssignToModal.js"></script>
-   <script src="~/Scripts/Ticket/description-template.js"></script>
+    <script src="~/Scripts/Ticket/description-template.js"></script>
 
 
 }

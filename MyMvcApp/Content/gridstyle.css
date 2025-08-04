@@ -15,7 +15,7 @@
 }
 
     #ticketGrid .dx-datagrid-table {
-        border-spacing: 3px 3px !important; /* 10px gap between columns, 8px between rows */
+        border-spacing: 0px 0px !important; /* 10px gap between columns, 8px between rows */
         border-collapse: separate !important;
     }
     /*  Remove All Default Borders */
@@ -35,7 +35,8 @@
             background-color: #ffffff !important; /* Keep header white */
             color: black !important;
             border: none !important;
-            padding: 2px 5px !important;
+            padding: 5px 5px !important;
+            
         }
 
    
@@ -44,7 +45,7 @@
     /*  2. Remove cell borders */
     #ticketGrid .dx-row > td,
     #ticketGrid .dx-header-row > td {
-        border: none !important;
+        border: 1px solid white !important;
         text-align: left ; /* Align text to the left */
         vertical-align: middle !important; /* Optional: center vertically */
     }
@@ -52,13 +53,11 @@
         #ticketGrid .dx-row > td:not(:first-child),
         #ticketGrid .dx-header-row > td:not(:first-child) {
             text-align: left !important; /* Align text to the left */
+
            
         }
 
-    /* === 3. Row Height === */
-    #ticketGrid .dx-row {
-        height: 21px !important;
-    }
+ 
 
     /* === Light gray background for all data rows === */
     #ticketGrid .dx-data-row {
@@ -77,9 +76,7 @@
             #ticketGrid .dx-data-row > td:first-child {
                 background-color: transparent !important;
                 box-shadow: none !important;
-               
-                
-              
+                border: none !important;
             }
 
           
@@ -147,14 +144,15 @@
     #ticketGrid .dx-select-checkbox.dx-checkbox-checked::after {
         content: '';
         position: absolute;
-        top: 2px;
-        left: 4px;
-        width: 3px;
-        height: 6px;
+        top: 50%;
+        left: 50%;
+        width: 4px;
+        height: 7px;
         border: solid white;
         border-width: 0 1.5px 1.5px 0;
-        transform: rotate(45deg);
+        transform: translate(-50%, -60%) rotate(45deg);
     }
+
 
     /* === 8. Cell Padding === */
     #ticketGrid .dx-header-row td,
@@ -269,4 +267,22 @@
 .open-description-popup {
     border: none !important;
     background: transparent !important;
+}
+
+
+.dx-datagrid-headers {
+    z-index: 2 !important;
+    background-color: white;
+}
+
+
+
+#ticketGrid .dx-row > td {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
 }

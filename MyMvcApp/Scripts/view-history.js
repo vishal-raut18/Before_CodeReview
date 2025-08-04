@@ -11,9 +11,16 @@
         const status = selectedRow.find('td:eq(5)').text().trim();
         const owner = selectedRow.find('td:eq(6)').text().trim();
         const assignedTo = selectedRow.find('td:eq(7)').text().trim();
+        const notifyUser = selectedRow.find('td:eq(9)').text().trim(); // Corrected index
         const email = selectedRow.find('td:eq(9)').text().trim();
         const description = selectedRow.find('td:eq(10)').text().trim();
         const priority = selectedRow.find('td:eq(15)').text().trim();
+
+       
+
+
+
+       
 
         $('#historyTicketId').text(`#${ticketId}`);
         $('#historyComputer').text(computer);
@@ -21,6 +28,7 @@
         $('#historyDescription').text(description);
         $('#historyOwner').text(owner);
         $('#historyAssignedTo').text(assignedTo);
+        $('#historyNotifyUser').text(notifyUser); // Displays in modal
         $('#historyPriority').text(priority);
         $('#historyCreatedByName').text(email); // display below 'Created By'
         const now = new Date();
@@ -34,5 +42,9 @@
         $('#historyActionPriority').text(priority);
 
         $('#viewHistoryModal').modal('show');
+
+        
     });
+
+    
 });

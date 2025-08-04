@@ -40,6 +40,17 @@
     <link href="~/Content/Ticket/AssignToModal.css" rel="stylesheet" />
     <link href="~/Content/Ticket/edit-ticket.css" rel="stylesheet" />
 
+    <style>
+        #selectionBadge {
+            transition: opacity 0.2s ease-in-out;
+        }
+
+            #selectionBadge span {
+                font-family: 'Open Sans', 'Segoe UI';
+            }
+
+    </style>
+
 </head>
 <body>
 
@@ -124,8 +135,37 @@
             $('#sidebar').toggleClass('collapsed');
             $('#mainContent').toggleClass('collapsed');
         });
+
+
+
     </script>
-   
+
+
+
+    <script>
+        function clearSelection() {
+            const grid = $("#ticketGrid").dxDataGrid("instance");
+            grid.clearSelection();
+
+            document.getElementById("selectionBadge").classList.add("d-none");
+        }
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function () {
+                // Delay execution to wait for the dropdown to render
+                setTimeout(() => {
+                    dropdownMenu.style.transform = 'translate(145px,35px)';
+                }, 10);
+            });
+        });
+    </script>
+
 
 
     @Scripts.Render("~/bundles/bootstrap")
@@ -134,7 +174,7 @@
     @RenderSection("scripts", required: false)
 
     <input type="hidden" id="modalContext" value="new" />
-
+        
 
 
 

@@ -12,6 +12,7 @@
     // Handler for "Close Ticket" button (confirm modal)
     $("#confirmCloseTicket").on("click", function () {
         updateTicketStatus("Closed", "ticketClosedToast", "bg-primary");
+
         $("#closeTicketModal").modal("hide");
     });
 });
