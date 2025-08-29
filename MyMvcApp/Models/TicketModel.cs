@@ -19,5 +19,8 @@
         public string LastModifiedBy { get; set; }
         public string Source { get; set; }
         public string Priority { get; set; }
+
+        public string ComputerStatus { get; set; }
+        public string Policy { get; set; }
     }
 }

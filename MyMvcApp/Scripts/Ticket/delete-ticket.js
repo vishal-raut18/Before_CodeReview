@@ -36,11 +36,11 @@
         $.ajax({
             type: "POST",
             url: "/Ticket/Delete",
-            traditional: true, // Important for sending array properly
+            traditional: true, 
             data: { id: selectedTicketIDs },
             success: function (response) {
                 if (response.success) {
-                    // Update grid after deletion
+                    
                     const grid = $("#ticketGrid").dxDataGrid("instance");
                     if (grid) {
                         const currentData = grid.getDataSource().items();
@@ -48,8 +48,6 @@
                         grid.option("dataSource", updatedData);
                         grid.refresh();
                     }
-
-                    // Hide modal and show toast
                     bootstrap.Modal.getInstance(document.getElementById("deleteTicketModal")).hide();
                     new bootstrap.Toast(document.getElementById("deleteToast")).show();
                 } else {

@@ -1,0 +1,212 @@
+﻿
+.column-chooser-position {
+    position: absolute;
+    right: 1%; 
+    top:3%
+   
+}
+.scrollable-box {
+    border: 1px solid #ddd;
+    padding: 8px;
+    min-height: 250px;
+    max-height: 250px;
+    overflow-y: auto;
+    background: #fff;
+}
+
+.group-header {
+    font-weight: bold;
+    background: #f1f1f1;
+    padding: 4px;
+    margin-top: 6px;
+}
+
+.draggable-item {
+    padding: 6px;
+    border: 1px solid #ccc;
+    margin: 4px 0;
+    background: #fafafa;
+    cursor: grab;
+}
+
+    .draggable-item:active {
+        cursor: grabbing;
+        background: #e9ecef;
+    }
+
+.drop-container {
+    width: 27%;
+    margin-right: 15px;
+    border: 2px dashed #00aaff;
+    background-color: #e6f7ff;
+    padding: 10px;
+    position: relative;
+    min-height: 200px;
+    transition: all 0.3s ease;
+}
+
+.drop-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: #0099cc;
+    opacity: 0.6;
+    pointer-events: none;
+    text-align: center;
+}
+
+.drop-container.filled .drop-placeholder {
+    display: none;
+}
+
+.drag-handle {
+    color: #999;
+    font-size: 14px;
+    margin-right: 8px;
+    cursor: grab;
+}
+
+.column-item {
+    background: #f1f1f1;
+    padding: 6px 15px !important;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+    .column-item:hover {
+        background: #e8e8e8;
+    }
+
+.column-item {
+    position: relative;
+    padding-left: 20px;
+    cursor: grab;
+}
+
+    .column-item::before {
+        content: '⋮⋮\00a0\00a0';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: gray;
+        pointer-events: none;
+    }
+
+
+
+.column-item {
+    background: #f1f1f1;
+    padding: 6px 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    cursor: grab;
+    font-size: 12px;
+}
+
+    .column-item:hover {
+        background: #e8e8e8;
+    }
+
+.selected-column {
+    background: #d6ebff !important;
+}
+
+    .selected-column:hover {
+        background: #c0deff !important;
+    }
+
+.border::-webkit-scrollbar {
+    width: 8px;
+}
+
+.border::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.border::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+    .border::-webkit-scrollbar-thumb:hover {
+        background: #a1a1a1;
+    }
+
+.border {
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+/* Drop placeholder styles - ONLY show during drag */
+.drop-placeholder {
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    right: 60px;
+    bottom: 0;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    background: rgba(135, 206, 235, 0.1);
+    font-size: 30px;
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.drop-placeholder-content {
+    text-align: center;
+    color: #68BCFB;
+    font-size: 30px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.drop-placeholder-text {
+    line-height: 1.2;
+}
+
+/* Show placeholder ONLY during drag over */
+#selectedColumns.drag-over .drop-placeholder {
+    display: flex !important;
+}
+
+/* Always visible elements */
+.v {
+    visibility: visible !important;
+}
+
+/* Default selected columns container styling */
+#selectedColumnsContainer #selectedColumns.drag-over {
+    background: red;
+    border: 2px dotted #0091ff;
+    border-radius: 8px;
+}
+
+/* Drag feedback styling */
+#selectedColumns.drag-over {
+    background: rgba(135, 206, 235, 0.05) !important;
+}
+
+/* Ensure selected columns container is positioned relative for placeholder positioning */
+#selectedColumns {
+    position: relative;
+}
+
+/* Disabled button appearance */
+button.disabled,
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+

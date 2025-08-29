@@ -119,12 +119,12 @@
         }
 
 
-    /* 🔘 1. Always gray left border on 2nd column */
+    /* ✅ Make sure the 2nd column cell is relatively positioned */
     #ticketGrid .dx-datagrid-rowsview .dx-data-row td:nth-child(2) {
         position: relative;
     }
-    
 
+        /* ✅ Set up the base style for ::before line */
         #ticketGrid .dx-datagrid-rowsview .dx-data-row td:nth-child(2)::before {
             content: "";
             position: absolute;
@@ -132,12 +132,17 @@
             top: 0;
             width: 5px;
             height: 100%;
-            background-color: #ccc; /* Light gray */
+            background-color: transparent; /* Default: no color */
         }
 
-    /* ✅ 2. On selection, change to green */
-    #ticketGrid .dx-datagrid-rowsview .dx-data-row.dx-selection td:nth-child(2)::before {
-        background-color: #88db2f !important; /* Green */
+    /* ✅ Show green if class "status-online" is applied to 2nd column */
+    #ticketGrid .dx-datagrid-rowsview .dx-data-row td.status-online:nth-child(2)::before {
+        background-color: #88db2f;
+    }
+
+    /* ✅ Show gray if class "status-offline" is applied to 2nd column */
+    #ticketGrid .dx-datagrid-rowsview .dx-data-row td.status-offline:nth-child(2)::before {
+        background-color: #ccc;
     }
 
 

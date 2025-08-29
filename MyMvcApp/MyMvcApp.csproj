@@ -123,6 +123,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="DAL\TicketManager.cs" />
+    <Compile Include="DAL\UserManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,8 +161,17 @@
     <Content Include="Content\ticket.css" />
     <Content Include="Content\Ticket\AssignOwner.css" />
     <Content Include="Content\Ticket\AssignToModal.css" />
+    <Content Include="Content\Ticket\ColumnChooser.css" />
     <Content Include="Content\Ticket\edit-ticket.css" />
+    <Content Include="Content\Ticket\FilterModel.css" />
+    <Content Include="Content\Ticket\logo.png" />
     <Content Include="Content\Ticket\newTIcketStyle.css" />
+    <Content Include="Content\Vishal\ColumnChooser.js" />
+    <Content Include="Content\Vishal\DEmoMain.js" />
+    <Content Include="Content\Vishal\Filter.js" />
+    <Content Include="Content\Vishal\IncomingTicket.js" />
+    <Content Include="Content\Vishal\NewIncoming.js" />
+    <Content Include="Content\Vishal\Second.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -191,6 +202,7 @@
     <Content Include="Scripts\new-ticket.js" />
     <Content Include="Scripts\status-actions.js" />
     <Content Include="Scripts\Ticket\description-template.js" />
+    <Content Include="Scripts\Ticket\filter-modal.js" />
     <Content Include="Scripts\Ticket\ticket-grid.js" />
     <Content Include="Scripts\ticket-modals.js" />
     <Content Include="Scripts\ticket.js" />
@@ -199,6 +211,7 @@
     <Content Include="Scripts\Ticket\delete-ticket.js" />
     <Content Include="Scripts\Ticket\edit-ticket.js" />
     <Content Include="Scripts\Ticket\new-ticket.js" />
+    <Content Include="Scripts\Ticket\ticket-main.js" />
     <Content Include="Scripts\Ticket\view-history.js" />
     <Content Include="Scripts\Ticket\view-ticket.js" />
     <Content Include="Scripts\view-history.js" />
@@ -224,15 +237,18 @@
     <Content Include="Views\Ticket\_AssignOwnerModal.cshtml" />
     <Content Include="Views\Ticket\_AssignToModal.cshtml" />
     <Content Include="Views\Ticket\_EditTicketModal.cshtml" />
-    <Content Include="Views\Ticket\_EditAssignOwnerModal.cshtml" />
+    <Content Include="Views\Ticket\_EditAssignToModal.cshtml" />
     <Content Include="Views\Ticket\_DeleteTicketModal.cshtml" />
     <Content Include="Views\Ticket\_ViewTicketModal.cshtml" />
     <Content Include="Views\Ticket\_ViewHistoryModal.cshtml" />
     <Content Include="Views\Ticket\_ToastPartial.cshtml" />
+    <Content Include="Views\Ticket\Ticketing.cshtml" />
+    <Content Include="Views\Ticket\_EditAssignOwnerModel.cshtml" />
+    <Content Include="Views\Ticket\_FilterModal.cshtml" />
+    <Content Include="Views\Ticket\_ColumnChooserModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Vishal\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

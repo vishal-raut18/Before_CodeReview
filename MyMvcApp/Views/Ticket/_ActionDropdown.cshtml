@@ -31,11 +31,8 @@
 
 
 
-<<<<<<< HEAD
-        <a class="dropdown-item d-flex align-items-center delete-ticket-action " href="#">
-=======
-          <a class="dropdown-item d-flex align-items-center delete-ticket-action" href="#">
->>>>>>> 6ebb9d7436dbcfa2648de44b2d1b5d995a3d7d49
+
+        <a class="dropdown-item d-flex align-items-center delete-ticket-action" href="#">
             <i class="bi bi-trash me-2"></i> Delete Ticket
         </a>
 
@@ -45,8 +42,13 @@
 
         <!-- ASSIGN -->
         <div class="mb-1 px-2 text-muted small" style="font-family: ' Open Sans', 'Segoe UI';">ASSIGN</div>
-        <a class="dropdown-item d-flex align-items-center" href="#" style="font-family: ' Open Sans', 'Segoe UI';"><i class="bi bi-person-plus me-2"></i> Assign Ticket</a>
-        <a class="dropdown-item d-flex align-items-center" href="#" style=" font-family: ' Open Sans', 'Segoe UI';"><i class="bi bi-person-badge me-2"></i> Assign Owner</a>
+        <a class="dropdown-item d-flex align-items-center assign-ticket-action" href="#">
+            <i class="bi bi-person-plus me-2"></i> Assign Ticket
+        </a>
+
+        <a class="dropdown-item d-flex align-items-center assign-owner-action" href="#" style="font-family: 'Open Sans', 'Segoe UI';">
+            <i class="bi bi-person-badge me-2"></i> Assign Owner
+        </a>
 
         <hr class="my-1" />
 
@@ -155,6 +157,7 @@
         });
     });
 </script>
+
 <style>
     .dropdown-submenu {
         top: 0;

@@ -1,0 +1,174 @@
+﻿.status-btn {
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 3px 10px;
+}
+
+    .status-btn.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+.filter-btn {
+    font-size: 13px;
+    text-align: left;
+    border-radius: 4px;
+}
+
+    .filter-btn.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+.btn-close {
+    margin-top: -10px;
+}
+
+
+#filterModal .dropdown-menu {
+    display: none;
+    min-width: 270px;
+    max-height: 260px;
+    overflow-y: auto;
+    border-radius: 6px;
+    font-size: 13px;
+    position: absolute;
+    z-index: 999;
+}
+
+.focus-wrapper {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+    .focus-wrapper:focus-within {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 0 1px #0d6efd40;
+    }
+
+
+.search-box {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+    .search-box:focus {
+        outline: none;
+        
+    }
+
+.clear-search {
+    border: none;
+    background: none;
+    color: #6c757d;
+}
+
+.form-check-label {
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-check-input {
+    margin-top: 0.35rem;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    border: var(--bs-border-width) solid #b4bbc1;
+}
+
+.filter-button {
+    font-size: 13px;
+    border: none;
+    height: 30px;
+    background-color: #f8f9fa;
+}
+
+    .filter-button.selected {
+        background-color: #d7ebff !important;
+        color: #000;
+    }
+.scrollable-list {
+    max-height: 200px; /* or any height that fits well */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px; /* space for scrollbar */
+    box-sizing: border-box; /* ensures padding stays inside */
+}
+
+    /* Optional: Make scrollbar thinner on WebKit browsers */
+    .scrollable-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .scrollable-list::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 3px;
+    }
+#filterModal .dropdown-menu {
+    max-width: 100%; /* Prevents it from growing wider than its parent */
+    overflow-x: hidden; /* Hides horizontal scroll */
+}
+
+
+/* Makes the dropdown list scrollable without overflow outside */
+#filterModal .scrollable-list {
+    max-height: 200px; /* Change this to whatever fits your modal */
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box; /* Ensures padding stays inside */
+    padding-right: 5px; /* Prevents scrollbar from overlapping text */
+}
+
+    /* Optional: Scrollbar styling for WebKit browsers */
+    .scrollable-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .scrollable-list::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 3px;
+    }
+
+.selectable-button.selected {
+    background-color: #d7ebff;
+    border: 1px solid #0091ff;
+  
+}
+
+.dropdown-label {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#selectedTicketOwner, #selectedAssignedTo {
+    display: inline-block;
+    max-width: 130px; /* Adjust based on your layout */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.custom-hr {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border: none;
+    border-top: 1px solid #ccc; /* or whatever style you want */
+}
+
+
+#filterModal .btn:focus,
+#filterModal .btn:active,
+#filterModal .btn.show,
+#filterModal .dropdown-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+

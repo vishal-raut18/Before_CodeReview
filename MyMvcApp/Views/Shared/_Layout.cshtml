@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title - Dashboard</title>
 
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Ticket/logo.png" />
+
+
     <!-- Bootstrap & Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
@@ -40,6 +43,10 @@
     <link href="~/Content/Ticket/AssignToModal.css" rel="stylesheet" />
     <link href="~/Content/Ticket/edit-ticket.css" rel="stylesheet" />
 
+
+    <link href="~/Content/Ticket/FilterModel.css" rel="stylesheet" />
+    <link href="~/Content/Ticket/ColumnChooser.css" rel="stylesheet" />
+
     <style>
         #selectionBadge {
             transition: opacity 0.2s ease-in-out;
@@ -48,8 +55,97 @@
             #selectionBadge span {
                 font-family: 'Open Sans', 'Segoe UI';
             }
-
     </style>
+
+    <style>
+        /* Target only the checkboxes in your editAssign grid */
+        #editAssignToModelGrid .circle-checkbox-only-editAssign .dx-checkbox-icon {
+            border-radius: 50% !important;
+            border: 2px solid #6c757d !important;
+            width: 16px;
+            height: 16px;
+        }
+
+        #editAssignToModelGrid .circle-checkbox-only-editAssign .dx-checkbox-checked .dx-checkbox-icon {
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+        }
+
+            #editAssignToModelGrid .circle-checkbox-only-editAssign .dx-checkbox-checked .dx-checkbox-icon::after {
+                content: '';
+                width: 8px;
+                height: 8px;
+                background: white;
+                border-radius: 50%;
+                display: block;
+                margin: 3px auto;
+            }
+
+        /* Optional: Hide DevExtreme's default checkmark */
+        #editAssignToModelGrid .circle-checkbox-only-editAssign .dx-checkbox-icon::before {
+            display: none !important;
+        }
+
+
+        .preselected-green-checkbox .dx-checkbox-icon {
+            border-radius: 50%;
+            background-color: green !important;
+            border: 2px solid green;
+            width: 16px;
+            height: 16px;
+            position: relative;
+        }
+
+            .preselected-green-checkbox .dx-checkbox-icon::after {
+                content: "";
+                width: 6px;
+                height: 6px;
+                background: white;
+                border-radius: 50%;
+                position: absolute;
+                top: 4px;
+                left: 4px;
+            }
+
+
+        /* Target only the checkboxes in your editassignToOwnerGrid */
+        #editassignToOwnerGrid .circle-checkbox-only-editOwner .dx-checkbox-icon {
+            border-radius: 50% !important;
+            border: 2px solid #6c757d !important;
+            width: 16px;
+            height: 16px;
+        }
+
+        #editassignToOwnerGrid .circle-checkbox-only-editOwner .dx-checkbox-checked .dx-checkbox-icon {
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+        }
+
+            #editassignToOwnerGrid .circle-checkbox-only-editOwner .dx-checkbox-checked .dx-checkbox-icon::after {
+                content: '';
+                width: 8px;
+                height: 8px;
+                background: white;
+                border-radius: 50%;
+                display: block;
+                margin: 3px auto;
+            }
+
+        /* Optional: Hide DevExtreme's default checkmark */
+        #editassignToOwnerGrid .circle-checkbox-only-editOwner .dx-checkbox-icon::before {
+            display: none !important;
+        }
+    </style>
+    <style>
+        .controls-bar .btn:focus,
+        .controls-bar .btn:active,
+        .controls-bar .btn.show,
+        .controls-bar .dropdown-toggle:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+
 
 </head>
 <body>
@@ -58,7 +154,7 @@
     <div class="sidebar" id="sidebar">
         <div class="top-logo">
             <button class="btn-toggle" id="menu-toggle"><i class="bi bi-list"></i></button>
-            <img src="~/Content/images/faronics-logo.png" alt="Logo" />
+            <img id="imgLogo" src="~/Content/images/faronics-logo.png" alt="Logo" />
         </div>
         <a href="@Url.Action("Index", "Dashboard")"><i class="bi bi-grid"></i><span class="text">Dashboard</span></a>
         <a href="#"><i class="fas fa-th"></i><span class="text">Applications</span></a>
@@ -67,7 +163,7 @@
         <a href="#"><i class="bi bi-download"></i><span class="text">OS Deployment</span></a>
         <a href="#"><i class="bi bi-phone"></i><span class="text">MDM</span></a>
         <a href="#"><i class="bi bi-shield-exclamation"></i><span class="text">Anti‑Virus</span></a>
-        <a class="active" href="@Url.Action("Index", "Ticket")"><i class="bi bi-ticket-detailed"></i><span class="text">Tickets</span></a>
+        <a class="active" href="@Url.Action("Ticketing", "Ticket")"><i class="bi bi-ticket-detailed"></i><span class="text">Tickets</span></a>
         <a href="#"><i class="bi bi-list-check"></i><span class="text">Task History</span></a>
         <hr />
 
@@ -81,9 +177,9 @@
 
         <footer>
             <hr class="footer-divider" />
-            <a href="#" class="bottom-user text-truncate" title="Vishalr@gmail.com">
+            <a href="#" class="bottom-user text-truncate" title="john@gmail.com">
                 <i class="fas fa-user-circle"></i>
-                <span class="text ml-2">Vishalr@gmail.com</span>
+                <span class="text ml-2">john@gmail.com</span>
             </a>
         </footer>
 
@@ -92,7 +188,7 @@
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <div class="topbar" style="height:40px; margin-top:-20px !important; margin-right:-30px; gap-1">
-            <h4 class="mb-0" style="font-family: ' Open Sans', 'Segoe UI' ; font-size:18px ;padding-left:10px;">@ViewBag.Title</h4>
+            <h4 class="mb-0" style="font-family: ' Open Sans', 'Segoe UI' ; font-size:18px ;padding-left:10px;">Tickets</h4>
             <div class="top-icons">
                 <i class="fas fa-cloud-arrow-down" style="font-size: 12px; width: 24px; " title="Download Agent"></i><span class="text-dark small" style="font-family: ' Open Sans', 'Segoe UI' ; font-size:12px;"> Download Agent</span>
                 <i class="bi bi-chevron-down small" style="font-size: 12px; width: 24px;" title="Training"></i>
@@ -134,6 +230,11 @@
         $('#menu-toggle').click(function () {
             $('#sidebar').toggleClass('collapsed');
             $('#mainContent').toggleClass('collapsed');
+            if ($('#sidebar').hasClass("collapsed"))
+                $('#imgLogo').addClass('d-none');
+            else
+                $('#imgLogo').removeClass('d-none');
+
         });
 
 
@@ -174,7 +275,16 @@
     @RenderSection("scripts", required: false)
 
     <input type="hidden" id="modalContext" value="new" />
-        
+
+    <input type="hidden" id="assignToTicketIndex" />
+    <input type="hidden" id="currentAssignedToName" />
+    <input type="hidden" id="assignID" />
+    <input type="hidden" id="assignTicketID" />
+
+    <input type="hidden" id="assignOwnerID" />
+    <input type="hidden" id="assignOwnerTicketID" />
+    <input type="hidden" id="currentOwnerName" />
+
 
 
 

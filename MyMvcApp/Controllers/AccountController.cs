@@ -1,12 +1,18 @@
 ﻿using System.Web.Mvc;
 using MyMvcApp.Models;
-using System.Configuration;
-using System.Data.SqlClient;
+using MyMvcApp.DAL;
 
 namespace MyMvcApp.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly UserManager _userManager;
+
+        public AccountController()
+        {
+            _userManager = new UserManager();
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -19,32 +25,22 @@ namespace MyMvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                bool isValid = _userManager.IsValidUser(model.Username, model.Password);
+
+                if (isValid)
                 {
-                    string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Username", model.Username);
-                        cmd.Parameters.AddWithValue("@Password", model.Password); // Plain text - only for demo
-
-                        conn.Open();
-                        int userCount = (int)cmd.ExecuteScalar();
-
-                        if (userCount > 0)
-                        {
-                            Session["Username"] = model.Username;
-                            return RedirectToAction("Index", "Dashboard");
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "Invalid username or password.");
-                        }
-                    }
+                    Session["Username"] = model.Username;
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
                 }
             }
 
             return View(model);
         }
+
+
     }
 }

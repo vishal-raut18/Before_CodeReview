@@ -1,0 +1,78 @@
+﻿<!-- Column Chooser Modal -->
+<div class="modal fade" id="columnChooserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg column-chooser-position">
+        <div class="modal-content rounded-0 shadow" style="font-family: 'Open Sans', 'Segoe UI'; font-size: 13px; width:900px;">
+            <div class="modal-body py-3 px-4">
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-start mb-2 py-2 px-1">
+                    <div>
+                        <div class="fw-bold" style="font-size: 16px;">Column Chooser</div>
+                        <div class="text-muted" style="font-size: 10px;">Drag/drop columns to select and apply</div>
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <button id="columnChooserResetBtn" type="button" class="btn btn-sm me-2" style="border: 1px solid #0091ff; color: #0091ff; width: 90px; height: 28px; font-size:13px;">Reset</button>
+                        <button id="columnChooserApplyBtn" type="button" class="btn btn-sm px-3" style="background-color: #0091ff; color: white; min-width: 90px; height: 28px; font-size: 13px;">Apply</button>
+                        <button id="columnchosserCloseBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="transform: scale(0.6); margin-left:10px;"></button>
+                    </div>
+                </div>
+
+                <hr class="w-100 my-1" />
+
+                <!-- Column Chooser Body -->
+                <div class="d-flex" style="height: 300px; overflow: hidden;">
+                    <!-- Selected Columns -->
+
+                    <div style="width: 27%; margin-right: 15px;" class="xy">
+                        <div id="selectedColumnsContainer" class="drag-over" style="height: 100%;  ">
+                            <div class="fw-bold mb-2 mt-2 ps-2 v" >Selected Columns</div>
+                            <div class="small mb-2 mt-1 ps-2 v" style="font-size: 10px;">Drag and drop to rearange order</div>
+                            <div style="height: calc(100% - 70px); overflow-y: auto; font-size:15px !important;">
+                                <div id="selectedColumns" class="p-2" style="min-height: 100%;">
+                                    <!-- Placeholder for empty state -->
+                                    <div id="dropPlaceholder" class="drop-placeholder">
+                                        <div class="drop-placeholder-content">
+                                            <div class="drop-placeholder-text">Drop</div>
+                                            <div class="drop-placeholder-text">here</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div style="width: 10px; background: #ddd; margin-right: 15px; margin:15px; border-radius:20px;"></div>
+
+                    <!-- Available Columns -->
+                    <div  style="width: calc(75% - 16px);">
+                        <div class="fw-bold  mb-2 mt-2 align-items-center">Available Columns</div>
+                        <div style="height: 80%; background: #fff; overflow: auto;">
+                            <div class="d-flex p-2" style="min-width: 420px;">
+                                <!-- General Category -->
+                                <div style="width: 140px; margin-right: 10px;">
+                                    <div class=" text-muted mb-2" style="font-size: 14px; color: #666 !important;">General</div>
+                                    <div id="generalColumns" ></div>
+                                </div>
+
+                                <!-- Other Category -->
+                                <div style="width: 140px; margin-right: 10px;">
+                                    <div class=" small text-muted mb-2" style="font-size: 14px; color: #666 !important;">Other</div>
+                                    <div id="otherColumns"></div>
+                                </div>
+
+                                <!-- User Category -->
+                                <div style="width: 140px;">
+                                    <div class=" small text-muted mb-2" style="font-size: 14px;  color: #666 !important;">User</div>
+                                    <div id="userColumns"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="w-100 my-1" />
+            </div>
+        </div>
+    </div>
+</div>
+

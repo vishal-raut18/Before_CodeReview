@@ -1,6 +1,6 @@
 ﻿﻿<div class="modal fade" id="viewHistoryModal" tabindex="-1" aria-labelledby="viewHistoryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content" style="border-radius: 6px; font-family: 'Open Sans', 'Segoe UI'; font-size: 13px; width:900px;">
+        <div class="modal-content" style="border-radius: 6px; font-family: 'Open Sans', 'Segoe UI'; font-size: 13px; width: 900px; max-height: 95vh; ">
 
             <div class="modal-header py-2 px-3 border-bottom-0">
                 <h6 class="modal-title  small" id="viewHistoryModalLabel" style="font-size: 14px; font-weight:bold; color:gray; ">
@@ -31,7 +31,7 @@
                     <!-- RIGHT PANEL -->
                     <div class="p-0" style="width: 65%;">
                         <div class="px-3 py-2" style="background-color: #f0f0f0; font-weight: 600;">Action History</div>
-                        <div id="historyActionContainer" class="p-3">
+                        <div id="historyActionContainer" class="p-3 " style="max-height: 70vh; overflow-y: auto;">
                           
                         </div>
                     </div>
@@ -39,7 +39,7 @@
             </div>
 
           
-            <div class="modal-footer border-top-0 justify-content-end px-4 pb-3">
+            <div class="modal-footer border-top-0 justify-content-end px-4 pb-3 ">
                 <button type="button" class="btn btn-primary btn-sm px-4" data-bs-dismiss="modal" id="ok">OK</button>
             </div>
         </div>
@@ -56,5 +56,8 @@
         font-weight: 400;
         border-radius: 5px;
         border:none;
+      
     }
+
+
   </style>

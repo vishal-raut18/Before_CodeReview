@@ -1,0 +1,292 @@
+﻿<!-- Filter Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 900px;">
+        <div class="modal-content rounded-0 shadow" style="font-family: 'Open Sans', 'Segoe UI'; font-size: 13px;">
+            <div class="modal-body py-3 px-4">
+
+                <!-- Top Section -->
+                <div class="d-flex justify-content-between align-items-start mb-2 py-2 px-1 position-relative" style="max-height: 45px;">
+                    <!-- Left: Filter By + Toggle -->
+                    <div class="d-flex align-items-center">
+                        <!-- Filter By -->
+                        <div class="me-5">
+                            <div class="fw-bold" style="font-size: 14px;">Filter By:</div>
+                            <div class="text-muted" style="font-size: 10px;">Click to select and apply</div>
+                        </div>
+
+                        <!-- View Search and Filter Toggle -->
+                        <div class="d-flex align-items-center gap-3 custom-toggle-wrapper">
+                            <label class="form-label mb-0" style="line-height: 1.2; font-size: 14px; font-weight: 500;">
+                                View Search and Filter<br />
+                                <span class="text-muted" style="font-size: 9px;">Right click on header to Sort</span>
+                            </label>
+                            <div class="form-check form-switch mb-0">
+                                <input class="form-check-input custom-toggle" type="checkbox" id="filterToggle">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Clear All / Apply / Close -->
+                    <div class="d-flex align-items-start">
+                        <button id="clearAllFiltersBtn" type="button" class="btn btn-sm me-2 clear-all-filters" style="border: 1px solid #0091ff; color: #0091ff; width: 75px; height: 28px; font-size:12px;">Clear All</button>
+                        <button id="applyFiltersBtn" type="button" class="btn btn-sm px-3 apply-filters" style="background-color: #0091ff; color: white; width: 75px; height: 28px; font-size: 12px;">Apply</button>
+
+                        <!-- Close Icon -->
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                style="transform: scale(0.6); margin-right: -8px; margin-top: -12px; margin-left:10px;">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Full-width HR -->
+                <hr class="w-100 my-1 " />
+
+
+                <div class="row gx-4 text-start mt-3 filter-row" style="font-family: 'Open Sans', 'Segoe UI'; font-size: 13px;">
+
+                    <!-- 1. Organization Elements -->
+                    <div class="col" style="min-width: 180px;">
+                        <div class="fw-bold py-1 px-2 mb-2" style="font-size: 12px;  border:none;">
+                            Organization Elements
+                        </div>
+                        <div class="d-grid gap-2">
+                            <!-- Dropdown Button for Computer Name -->
+
+                            <div class="position-relative">
+                                <!-- Trigger -->
+                                <button id="computerNameBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100 ">
+                                    <span id="selectedComputerName">Computer Name</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+
+                                <!-- Dropdown -->
+                                <div id="computerNameDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2" style="position: relative;">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span >Computer Name</span>
+                                        </div>
+                                        <hr class="full-width-hr">
+                                    </div>
+
+
+                                    <!-- Search -->
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0 search-icon">
+                                            <i class="bi bi-search text-muted" ></i>
+                                        </span>
+                                        <input type="text" id="computerSearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0 " id="clearComputerSearch"> </button>
+                                    </div>
+
+                                    <!-- Checkbox List -->
+                                    <div id="computerList"></div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="position-relative">
+                                <button id="groupBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedGroup">Group</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="groupDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Group</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="groupSearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearGroupSearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="groupList"></div>
+                                </div>
+                            </div>
+
+                            <div class="position-relative">
+                                <button id="tagsBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedTags">Tags</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="tagsDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Tags</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="tagsSearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearTagsSearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="tagsList"></div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="position-relative">
+                                <button id="policyBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedPolicy">Policy</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="policyDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Policy</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="policySearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearPolicySearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="policyList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Ticket Status -->
+                    <div class="col" style="min-width: 160px;">
+                        <div class="fw-semibold py-1 px-2 mb-2" style="font-size: 12px; ">
+                            Ticket Status
+                        </div>
+                        <div id="statusList"  class="d-grid gap-2">
+                            <button class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px;">
+                                Open <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+                            <button class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px;">
+                                In Progress <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+                            <button class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px;">
+                                Active <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+                            <button class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px;">
+                                Closed <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- 3. Ticket Assigned -->
+                    <div class="col" style="min-width: 180px;">
+                        <div class="fw-semibold py-1 px-2 mb-2" style="font-size: 12px; ">
+                            Ticket Assigned
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button id="myTicketsBtn" class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px; ">
+                                My Tickets <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+                            <!-- Assigned To Dropdown -->
+                            <div class="position-relative">
+                                <button id="assignedToBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedAssignedTo">Assigned To</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="assignedToDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Assigned To</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="assignedToSearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearAssignedToSearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="assignedToList" style="max-height:130px; overflow-y:auto"></div>
+                                </div>
+                            </div>
+
+                            <!-- Ticket Owner Dropdown -->
+                            <div class="position-relative">
+                                <button id="ticketOwnerBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedTicketOwner">Ticket Owner</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="ticketOwnerDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Ticket Owner</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="ticketOwnerSearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearTicketOwnerSearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="ticketOwnerList" style="max-height:130px; overflow-y:auto"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 4. Ticket Filters -->
+                    <div  class="col" style="min-width: 180px;">
+                        <div class="fw-semibold py-1 px-2 mb-2" style="font-size: 12px; ">
+                            Ticket Filters
+                        </div>
+                        <div class="d-grid gap-2">
+                            <!-- Ticket Source Dropdown -->
+                            <div class="position-relative">
+                                <button id="ticketSourceBtn" type="button" class="btn filter-button  d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedTicketSource">Ticket Source</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="ticketSourceDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Ticket Source</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="ticketSourceSearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearTicketSourceSearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="ticketSourceList" class="scrollable-list"></div>
+                                </div>
+                            </div>
+
+                            <!-- Ticket Priority Dropdown -->
+                            <div class="position-relative mt-2 ">
+                                <button id="ticketPriorityBtn" type="button" class="btn filter-button d-flex justify-content-between align-items-center px-2 py-1 w-100">
+                                    <span id="selectedTicketPriority">Ticket Priority</span>
+                                    <i class="bi bi-caret-down-fill text-muted ms-2" style="font-size: 12px;"></i>
+                                </button>
+                                <div id="ticketPriorityDropdown" class="dropdown-menu p-2 shadow-sm">
+                                    <div class="mt-1 px-2"><span>Ticket Priority</span><hr></div>
+                                    <div class="input-group input-group-sm mb-2 focus-wrapper">
+                                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                        <input type="text" id="ticketPrioritySearch" class="form-control search-box" placeholder="Search">
+                                        <button type="button" class="btn border-start-0" id="clearTicketPrioritySearch"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div id="ticketPriorityList" class="scrollable-list"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 5. Computer Status -->
+                    <div id="computerStatusList" class="col" style="min-width: 160px;">
+                        <div class="fw-semibold py-1 px-2 mb-2" style="font-size: 12px;">
+                            Computer Status
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px;">
+                                Online <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+                            <button class="btn btn-light selectable-button d-flex justify-content-between align-items-center px-2 py-1"
+                                    style="font-size: 13px;  border: none; height: 30px;">
+                                Offline <i class=" text-muted" style="font-size: 12px;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <hr class="w-100 my-1" style="margin:20px 10px !important" />
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+
+
+
